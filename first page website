@@ -2,7 +2,46 @@
 <html>
 <body style="background-color:black;" >
 
-<h1><img src="logo.jpg" width = "104" height="104"><h1>
+<h1><img src="logo.jpg" width = "104" height="104"></h1>
+
+<div class="button" align="center"><a class="button_cont" target="_blank" rel="nofollow"><span>START</a></div>
+
+button_cont {
+   border-radius: 4px;
+   background: none;
+   border: none;
+   color: "white";
+   text-align: center;
+   text-transform: uppercase;
+   font-size: 22px;
+   padding: 20px;
+   width: 200px;
+   transition: all 0.4s;
+   cursor: pointer;
+   margin: 5px;
+ }
+ .button_cont span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.4s;
+ }
+ .button_cont span:after {
+   content: '\00bb';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -20px;
+   transition: 0.5s;
+ }
+ .example_f:hover span {
+   padding-right: 25px;
+ }
+ .example_f:hover span:after {
+   opacity: 1;
+   right: 0;
+ }
+
 
 </body>
 </html>
