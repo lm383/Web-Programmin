@@ -27,10 +27,10 @@
 		
 		function move(e){
 			//should move the square down, doesnt work yet
-			if(e.keyCode == 40){
-				playerTop += 2;
-				player.style.playerTop = (parseInt(playerTop) + playerTop) + "px";
-			}
+			 if(e.keyCode == 40){
+				 playerTop += 2;
+				 player.style.top = playerTop + "px";
+			 }
 			
 			//moves the square right
 			if(e.keyCode == 39){
@@ -47,7 +47,7 @@
 			//should move the square up, doesnt work
 			if(e.keyCode == 38){
 				playerTop -= 2;
-				player.style.playerTop = (parseInt(playerTop) + playerTop) + "px";	
+				player.style.top = playerTop + "px";
 			}
 		}
 		document.onkeydown = move;
