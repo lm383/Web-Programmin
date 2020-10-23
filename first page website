@@ -2,7 +2,7 @@
 <html>
 <body style="background-color:black;" >
 
-<h1><img src="logo.jpg" width = "104" height="104"></h1>
+<h1><img src="./Public/Image/logo.png" width = "104" height="104"></h1>
 
 <div class="button" align="center"><a class="button_cont" target="_blank" rel="nofollow"><span>START</a></div>
 
