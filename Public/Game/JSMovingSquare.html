@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> test</title>
+
+	<style>
+		#player{
+		height : 50px;
+		width : 50px;
+		outline: 1px solid black;
+		position : relative;
+		background-color : #FF0000;
+		}
+	</style>
+</head>
+
+<body>
+		<div id="player">
+		</div>
+		
+		<script>
+		
+		var p = document.getElementById("player");
+		
+		var left = 0;
+		var playerTop = 0;
+		
+		function move(e){
+			//should move the square down, doesnt work yet
+			 if(e.keyCode == 40){
+				 playerTop += 2;
+				 player.style.top = playerTop + "px";
+			 }
+			
+			//moves the square right
+			if(e.keyCode == 39){
+				left += 2;
+				player.style.left = (parseInt(left) + left) + "px";
+			}
+			
+			//moves the square left
+			if(e.keyCode == 37){
+				left -= 2;
+				player.style.left = (parseInt(left) + left) + "px";
+			}
+			
+			//should move the square up, doesnt work
+			if(e.keyCode == 38){
+				playerTop -= 2;
+				player.style.top = playerTop + "px";
+			}
+		}
+		document.onkeydown = move;
+		</script>
+		
+</body>
+</html>		
