@@ -1,3 +1,7 @@
 div.hidden {
   display: none;
 }
+
+button.hidden {
+  display: none;
+}
