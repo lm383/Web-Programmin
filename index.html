@@ -4,23 +4,25 @@
     <title>
       Capture The Flag
     </title>
+    <!-- links to the css and ClientSide javascript-->
     <link rel="stylesheet" href='Public/Styles.css'>
+    <script type = "text/javascript" src="ClientSide.js"></script>
   </head>
   <body>
     <h1>OUR WEBPAGE</h1>
     <br>
     <p>
       This is where our game is:
-      <a href="./Public/JSMovingSquare">Game</a>
+      <a href="./Public/Game/JSMovingSquare">Game</a>
 
     </p>
     <br>
     <!-- the sign up button-->
-    <button onclick="document.getElementById('SignUp').style.display='block'">Sign Up</button>
+    <button onclick="HideShowSign()">Sign Up</button>
   </body>
 
   <!-- The Modal (contains the Sign Up form) -->
-<div id="id01" class="modal">
+<div id="SignUp" class="modal">
   <form class="modal-content" action="/">
     <div class="container">
       <h1>Sign Up</h1>
