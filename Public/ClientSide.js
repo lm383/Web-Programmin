@@ -1,11 +1,13 @@
 function HideShowSign() {
   // here we will hide the SignUp form
-  var x = document.getElementById("SignUp");
+  var SignForm = document.getElementById("SignUp");
+  var Button = document.getElementById("SignUpButton");
   // here we hide the div if it is showing and visversa
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    x.style.visibility = "visible";
+  if (SignForm.style.display === "none") {
+    SignForm.style.display = "block";
+    Button.style.display = "none";
     } else {
-    x.style.display = "none";
+    SignForm.style.display = "none";
+    Button.style.display = "Block";
   }
 }
