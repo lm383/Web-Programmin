@@ -5,3 +5,7 @@ div.hidden {
 button.hidden {
   display: none;
 }
+body{
+  color: white;
+  background-color:black;
+}
