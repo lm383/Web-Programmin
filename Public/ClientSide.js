@@ -1,3 +1,5 @@
+var database = require('./Server/database.jsS');
+
 function HideShowSign() {
   // here we will hide the SignUp form
   var SignForm = document.getElementById("SignUp");
@@ -23,4 +25,15 @@ function HideShowLog() {
     SignForm.style.display = "none";
     Button.style.display = "Block";
   }
+}
+
+// here we will check input the signup form into our database
+// we need see if username is already taken if it has send back error
+// if not enter the username and password into the database
+function SignUpTo(){
+  // get the values and put into variables
+  let Username = document.getElementById('Username').value
+  let Password = document.getElementById('Password').value
+  let RePassword = document.getElementById('RePassword').value
+
 }
