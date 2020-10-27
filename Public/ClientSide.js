@@ -28,5 +28,18 @@ function HideShowLog() {
 }
 
 function SignUpTo() {
-  database.SignUpTo();
+  // get the values and put into variables
+  let Username = document.getElementById("Username").value;
+  let Password = document.getElementById("Password").value;
+  let RePassword = document.getElementById("RePassword").value;
+  let Display = document.getElementById("Display");
+
+  console.log(Username);
+  console.log(Password);
+  if (Password === RePassword) {
+    let Error = database.SignUpTo(Username, Password);
+    Display.write = Error;
+  } else {
+    Display.write = "Passwords not same";
+  }
 }

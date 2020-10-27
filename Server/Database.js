@@ -24,13 +24,7 @@ Con.connect(function (err) {
 // here we will check input the signup form into our database
 // we need see if username is already taken if it has send back error
 // if not enter the username and password into the database
-function SignUpTo() {
-  // get the values and put into variables
-  let Username = document.getElementById("Username").value;
-  let Password = document.getElementById("Password").value;
-  let RePassword = document.getElementById("RePassword").value;
-  let Display = document.getElementById("RePassword");
-
+function SignUpTo(Username, Password) {
   var QuerySearch =
     "SELECT * FROM Logins WHERE Username= " + MySQL.escape(Username);
   var QueryInsert =
@@ -43,17 +37,18 @@ function SignUpTo() {
 
   Con.connect(function (err) {
     if (err) throw err;
-    //console.log("Connected!");
+    console.log("Connected!");
 
     Con.query(QuerySearch, function (err, result) {
       if (err) throw err;
       if (result != null) {
-        Display.write("Error: " + Username + " is already Taken");
+        console.log("username taken");
+        return "Error: " + Username + " is already Taken";
       } else {
         // here if there was no results for that Username
         Con.query(QueryInsert, function (err, result) {
           if (err) throw err;
-          Display.write("That's you signed up you can now log in.");
+          return "That's you signed up you can now log in.";
         });
       }
     });
