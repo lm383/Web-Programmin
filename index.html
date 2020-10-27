@@ -25,7 +25,8 @@
     <button id = "LogInButton" onclick="HideShowLog()">Log In</button>
     <!-- The Modal (contains the Sign Up form) originally hidden -->
   <div id="SignUp" class="modal" style = "display: none;">
-    <form class="modal-content" action="./Server/Database.js">
+    <p id="Display"> </p>
+    <form class="modal-content" action="SignUpTo()">
       <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
@@ -51,14 +52,15 @@
 
 
   <div id="LogIn" class="modal" style = "display: none;">
+    <p id="DisplayL"> </p>
     <form class="modal-content" action="/">
       <div class="container">
         <h1>Log In</h1>
         <label for="Username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="Username" required>
+        <input type="text" placeholder="Enter Username" name="UsernameL" required>
 
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" name="PasswordL" required>
 
         <div class="clearfix">
           <button type="button" onclick="HideShowLog()" class="cancelbtn">Cancel</button>
