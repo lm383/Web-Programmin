@@ -4,5 +4,8 @@
   "description": "",
   "keywords": [],
   "main": "index.html",
-  "dependencies": {}
+  "dependencies": {
+    "mysql": "2.18.1",
+    "node.js": "0.0.1-security"
+  }
 }
