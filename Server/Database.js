@@ -48,6 +48,7 @@ function SignUpTo(Username, Password) {
         // here if there was no results for that Username
         Con.query(QueryInsert, function (err, result) {
           if (err) throw err;
+          console.log(result);
           return "That's you signed up you can now log in.";
         });
       }
