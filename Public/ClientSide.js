@@ -1,4 +1,4 @@
-var database = require('./Server/database.jsS');
+var database = require("./Server/database.js");
 
 function HideShowSign() {
   // here we will hide the SignUp form
@@ -8,7 +8,7 @@ function HideShowSign() {
   if (SignForm.style.display === "none") {
     SignForm.style.display = "block";
     Button.style.display = "none";
-    } else {
+  } else {
     SignForm.style.display = "none";
     Button.style.display = "Block";
   }
@@ -21,8 +21,12 @@ function HideShowLog() {
   if (SignForm.style.display === "none") {
     SignForm.style.display = "block";
     Button.style.display = "none";
-    } else {
+  } else {
     SignForm.style.display = "none";
     Button.style.display = "Block";
   }
+}
+
+function SignUpTo() {
+  database.SignUpTo();
 }

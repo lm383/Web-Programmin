@@ -1,4 +1,4 @@
-var MySQL = require('mysql');
+var MySQL = require("mysql");
 
 /*
 Database info for future:
@@ -16,43 +16,46 @@ var Con = MySQL.createConnection({
   password: "bX9!iX9%"
 });
 
-Con.connect(function(err) {
+Con.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 });
 
-
-
 // here we will check input the signup form into our database
 // we need see if username is already taken if it has send back error
 // if not enter the username and password into the database
-function SignUpTo(){
+function SignUpTo() {
   // get the values and put into variables
-  let Username = document.getElementById('Username').value;
-  let Password = document.getElementById('Password').value;
-  let RePassword = document.getElementById('RePassword').value;
-  let Display = document.getElementById('RePassword');
+  let Username = document.getElementById("Username").value;
+  let Password = document.getElementById("Password").value;
+  let RePassword = document.getElementById("RePassword").value;
+  let Display = document.getElementById("RePassword");
 
-  var QuerySearch = "SELECT * FROM Logins WHERE Username= " + mysql.escape(Username);
-  var QueryInsert = "INSERT INTO Logins (Username, Password, HighScore) VALUES ("+ mysql.escape(Username)+
-  "," + mysql.escape(Password)+","+ "0)";
+  var QuerySearch =
+    "SELECT * FROM Logins WHERE Username= " + MySQL.escape(Username);
+  var QueryInsert =
+    "INSERT INTO Logins (Username, Password, HighScore) VALUES (" +
+    MySQL.escape(Username) +
+    "," +
+    MySQL.escape(Password) +
+    "," +
+    "0)";
 
-  Con.connect(function(err) {
+  Con.connect(function (err) {
     if (err) throw err;
     //console.log("Connected!");
 
-    Con.query(QuerySearch, function (err, result)){
+    Con.query(QuerySearch, function (err, result) {
       if (err) throw err;
-      if (result != null){
-        Display.write("Error: " + Username + " is already Taken")
-      }else{
+      if (result != null) {
+        Display.write("Error: " + Username + " is already Taken");
+      } else {
         // here if there was no results for that Username
         Con.query(QueryInsert, function (err, result) {
-            if (err) throw err;
-            Display.write("That's you signed up you can now log in.")
-          });
+          if (err) throw err;
+          Display.write("That's you signed up you can now log in.");
+        });
       }
-    }
+    });
   });
-
 }
