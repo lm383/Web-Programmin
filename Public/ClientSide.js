@@ -1,6 +1,6 @@
-//import "../Server/Database";
+import "../Server/Database";
 //import { SignUpTo as _SignUpTo } from "../Server/Database.js";
-const Database = require("../Server/Database.js");
+//const Database = require("../Server/Database.js");
 
 function HideShowSign() {
   // here we will hide the SignUp form
