@@ -33,9 +33,9 @@ function SignUpTo(){
   let RePassword = document.getElementById('RePassword').value;
   let Display = document.getElementById('RePassword');
 
-  var QuerySearch = "SELECT * FROM login WHERE Username= " + mysql.escape(Username);
-  var QueryInsert = "INSERT INTO customers (name, address) VALUES ("+ mysql.escape(Username)+
-  ","+ + mysql.escape(Password);
+  var QuerySearch = "SELECT * FROM Logins WHERE Username= " + mysql.escape(Username);
+  var QueryInsert = "INSERT INTO Logins (Username, Password, HighScore) VALUES ("+ mysql.escape(Username)+
+  "," + mysql.escape(Password)+","+ "0)";
 
   Con.connect(function(err) {
     if (err) throw err;
