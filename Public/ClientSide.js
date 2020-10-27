@@ -1,4 +1,6 @@
-let Database = require("./Server/Database.js");
+//import "../Server/Database";
+//import { SignUpTo as _SignUpTo } from "../Server/Database.js";
+const Database = require("../Server/Database.js");
 
 function HideShowSign() {
   // here we will hide the SignUp form
@@ -28,19 +30,20 @@ function HideShowLog() {
 }
 
 function SignUpTo() {
-  // get the values and put into variables
-  let Username = document.getElementById("Username").value;
-  let Password = document.getElementById("Password").value;
-  let RePassword = document.getElementById("RePassword").value;
-  let Display = document.getElementById("Display");
+  let Username = document.forms["SignUpForm"]["Username"].value;
+  let Password = document.forms["SignUpForm"]["Password"].value;
+  let RePassword = document.forms["SignUpForm"]["RePassword"].value;
 
-  console.log(Username);
-  console.log(Password);
+  let DisplayP = document.getElementById("Display");
   if (Password === RePassword) {
+    console.log("enter" + Username + Password);
     Database.SignUpTo(Username, Password);
-
-    Display.write = Error;
+    console.log("exit");
+    console.log("Submitted");
+    document.getElementById("SignUp").submit();
+    Display.innerHTML("submitted");
   } else {
-    Display.write = "Passwords not same";
+    //alert("Passwords not same");
+    DisplayP.textContent = "Passwords not same";
   }
 }

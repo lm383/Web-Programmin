@@ -25,15 +25,13 @@ Con.connect(function (err) {
 // we need see if username is already taken if it has send back error
 // if not enter the username and password into the database
 function SignUpTo(Username, Password) {
-  var QuerySearch =
-    "SELECT * FROM Logins WHERE Username= " + MySQL.escape(Username);
-  var QueryInsert =
-    "INSERT INTO Logins (Username, Password, HighScore) VALUES (" +
-    MySQL.escape(Username) +
-    "," +
-    MySQL.escape(Password) +
-    "," +
-    "0)";
+  console.log("made it!");
+  var QuerySearch = `SELECT * FROM Logins WHERE Username= ${MySQL.escape(
+    Username
+  )}`;
+  var QueryInsert = `INSERT INTO Logins (Username, Password, HighScore) VALUES (${MySQL.escape(
+    Username
+  )},${MySQL.escape(Password)},0)`;
 
   Con.connect(function (err) {
     if (err) throw err;

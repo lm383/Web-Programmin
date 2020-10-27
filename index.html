@@ -6,8 +6,7 @@
     </title>
     <!-- links to the css and ClientSide javascript-->
     <link rel="stylesheet" href='Public/Styles.css'>
-    <script type = "text/javascript" src="./Public/ClientSide.js">
-    console.log("HEEEEYYYYYSS")</script>
+    <script type = "text/javascript" src="./Public/ClientSide.js"></script>
   </head>
   <body>
     <h1><img src="./Public/Image/logo.png" width = "104" height="104"></h1>
@@ -23,10 +22,10 @@
     <!-- the sign up button this will make the form appear-->
     <button id = "SignUpButton" onclick="HideShowSign()">Sign Up</button>
     <button id = "LogInButton" onclick="HideShowLog()">Log In</button>
+    <p id="Display"> </p>
     <!-- The Modal (contains the Sign Up form) originally hidden -->
   <div id="SignUp" class="modal" style = "display: none;">
-    <p id="Display"> </p>
-    <form class="modal-content" action="SignUpTo()">
+    <form id="SignUpForm"class="modal-content"  onsubmit="return SignUpTo()">
       <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
@@ -37,14 +36,14 @@
         <label for="Password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="Password" required>
 
-        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <label for="RePassword"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" name="RePassword" required>
 
         <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
         <div class="clearfix">
           <button type="button" onclick="HideShowSign()" class="cancelbtn">Cancel</button>
-          <button type="submit" class="signup" onclick="SignUpTo()">Sign Up</button>
+          <button type="submit" class="signup" >Sign Up</button>
         </div>
       </div>
     </form>
@@ -52,7 +51,7 @@
 
 
   <div id="LogIn" class="modal" style = "display: none;">
-    <p id="DisplayL"> </p>
+    <span id="DisplayL"> </span>
     <form class="modal-content" action="/">
       <div class="container">
         <h1>Log In</h1>

@@ -10,6 +10,8 @@ const Server = Http.createServer(function (req, res) {
       res.writeHead(404);
       res.write("Error: File Not Found " + data);
     }
+    if (req) {
+    }
     res.end(); // end command
   });
 });
