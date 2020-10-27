@@ -5,9 +5,11 @@
   "keywords": [],
   "main": "/Server/App.js",
   "dependencies": {
-    "nodemon": "1.18.4",
     "jquery": "3.5.1",
     "mysql": "2.18.1",
     "node.js": "0.0.1-security"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
   }
 }
