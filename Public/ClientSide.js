@@ -1,4 +1,4 @@
-var database = require("./Server/database.js");
+var database = import("./Server/database.js");
 
 function HideShowSign() {
   // here we will hide the SignUp form
