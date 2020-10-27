@@ -7,6 +7,7 @@
     <!-- links to the css and ClientSide javascript-->
     <link rel="stylesheet" href='Public/Styles.css'>
     <script type = "text/javascript" src="./Public/ClientSide.js"></script>
+    <script type = "text/javascript" src="./Server/Database.js"></script>
   </head>
   <body>
     <h1><img src="./Public/Image/logo.png" width = "104" height="104"></h1>
@@ -24,7 +25,7 @@
     <button id = "LogInButton" onclick="HideShowLog()">Log In</button>
     <!-- The Modal (contains the Sign Up form) originally hidden -->
   <div id="SignUp" class="modal" style = "display: none;">
-    <form class="modal-content" action="/">
+    <form class="modal-content" action="./Server/Database.js">
       <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
