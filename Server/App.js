@@ -1,5 +1,6 @@
 // imported the http library and set up the port for the server
 const Http = require("http");
+//var MySQL = require("mysql");
 const Port = 3000;
 // the server all functionallity goes here
 const Server = Http.createServer(function (req, res) {
@@ -7,7 +8,7 @@ const Server = Http.createServer(function (req, res) {
   res.readFile("index.html", function (Error, data) {
     if (Error) {
       res.writeHead(404);
-      res.write("Error: File Not Found");
+      res.write("Error: File Not Found " + data);
     }
     res.end(); // end command
   });

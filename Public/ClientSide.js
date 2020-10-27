@@ -1,4 +1,4 @@
-var database = import("./Server/database.js");
+let Database = require("./Server/Database.js");
 
 function HideShowSign() {
   // here we will hide the SignUp form
@@ -37,7 +37,8 @@ function SignUpTo() {
   console.log(Username);
   console.log(Password);
   if (Password === RePassword) {
-    let Error = database.SignUpTo(Username, Password);
+    Database.SignUpTo(Username, Password);
+
     Display.write = Error;
   } else {
     Display.write = "Passwords not same";
