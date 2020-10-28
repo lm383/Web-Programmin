@@ -7,7 +7,8 @@
   "dependencies": {
     "jquery": "3.5.1",
     "mysql": "2.18.1",
-    "node.js": "0.0.1-security"
+    "node.js": "0.0.1-security",
+    "requirejs": "2.3.6"
   },
   "devDependencies": {
     "nodemon": "1.18.4"
