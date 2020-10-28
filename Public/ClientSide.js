@@ -1,6 +1,6 @@
-import "../Server/Database";
+//import "../Server/Database";
 //import { SignUpTo as _SignUpTo } from "../Server/Database.js";
-//const Database = require("../Server/Database.js");
+var Database = require("../Server/Database");
 
 function HideShowSign() {
   // here we will hide the SignUp form
@@ -36,14 +36,15 @@ function SignUpTo() {
 
   let DisplayP = document.getElementById("Display");
   if (Password === RePassword) {
-    console.log("enter" + Username + Password);
+    console.log("enter");
+
     Database.SignUpTo(Username, Password);
     console.log("exit");
     console.log("Submitted");
     document.getElementById("SignUp").submit();
-    Display.innerHTML("submitted");
+    DisplayP.innerHTML = "submitted";
   } else {
     //alert("Passwords not same");
-    DisplayP.textContent = "Passwords not same";
+    DisplayP.textContent = "Error: Passwords not same";
   }
 }
