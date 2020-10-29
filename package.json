@@ -9,7 +9,7 @@
     "mysql": "2.18.1",
     "node.js": "0.0.1-security",
     "requirejs": "2.3.6",
-    "express";"4.13.3"
+    "express":"4.13.3"
   },
   "devDependencies": {
     "nodemon": "1.18.4"
