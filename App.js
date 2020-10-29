@@ -2,12 +2,17 @@
 const Http = require("http");
 const Fs = require("fs");
 const Path = require('path');
+const BodyParser = require('body-parser')
+
 var Express = require('express');
 var App = Express();
 //var MySQL = require("mysql");
 const Port = 3000;
-
+App.use(BodyParser.json());
 App.use(Express.static("Public"));
+App.use(BodyParser.urlencoded({ 
+    extended: true
+}));
 
 const Server = App.listen(Port, function (Error) {
   if (Error) {
@@ -29,23 +34,18 @@ App.get("/", function(req,res){
 App.get("Game/GamePage", function(req,res){
   res.sendFile("/Game/GamePage.html");
 });
-/*
-App.get("/ClientSide", function(req,res){
-  res.sendFile("/ClientSide.js");
-});
-*/
-/*
 
-app.post('/submit-SignUp', function (req, res) {
-    var name = req.body.Username + ' ' + req.body.Password;
 
-    res.send(name + ' Submitted Successfully!');
+
+App.post('/SignUpSubmit', function (req, res) {
+    var Username = req.body.Username;
+    var Password = req.body.Password;
+    var RePassword = req.body.RePassword;
+
+    res.send(Username + ' '+Password+' You\'re all signed up');
 });
 
-var server = app.listen(5000, function () {
-    console.log('Node server is running..');
-});
-*/
+
 
 // the server all functionallity goes here
 /*
