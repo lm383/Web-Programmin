@@ -27,7 +27,6 @@ module.exports = {
   // we need see if username is already taken if it has send back error
   // if not enter the username and password into the database
   SignUpTo: function SignUpTo(Username, Password) {
-    console.log("made it!");
     /*validation
     var QuerySearch = `SELECT * FROM Logins WHERE Username= ${MySQL.escape(
       Username
@@ -45,7 +44,7 @@ module.exports = {
       Con.query(QueryInsert, function (err, result) {
         if (err) throw err;
         console.log(result);
-        return "That's you signed up you can now log in.";
+        return true;
       });
       /* validation
       Con.query(QuerySearch, function (err, result) {

@@ -41,10 +41,15 @@ App.post('/SignUpSubmit', function (req, res) {
     var Username = req.body.Username;
     var Password = req.body.Password;
     var RePassword = req.body.RePassword;
+    // here we save the database file as a variable to make it easier to use
     const Database = require("./Server/Database.js")
+    // here we call the SignUpTo function so it can add the data to the database
     var Result = Database.SignUpTo(Username, Password);
+    if (Result){
+      alert("That's you signed up!");
+      res.sendFile("/Game/GamePage.html");
+    }else{
+      res.send("Uh oh! something went wrong :(");
+    }
 
-
-
-    res.send(Result);
 });
