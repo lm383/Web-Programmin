@@ -28,24 +28,17 @@ function HideShowLog() {
     Button.style.display = "Block";
   }
 }
-/*
-function SignUpTo() {
+
+function ValSignUp() {
+  // this is where all the signup forms validation will go
   let Username = document.forms["SignUpForm"]["Username"].value;
   let Password = document.forms["SignUpForm"]["Password"].value;
   let RePassword = document.forms["SignUpForm"]["RePassword"].value;
 
-  let DisplayP = document.getElementById("Display");
   if (Password === RePassword) {
-    console.log("enter");
-
-    Database.SignUpTo(Username, Password);
-    console.log("exit");
-    console.log("Submitted");
-    document.getElementById("SignUp").submit();
-    DisplayP.innerHTML = "submitted";
+    console.log("pass same");
   } else {
-    //alert("Passwords not same");
-    DisplayP.textContent = "Error: Passwords not same";
+    alert("Passwords Different")
+    return false;
   }
 }
-*/

@@ -10,7 +10,7 @@ var App = Express();
 const Port = 3000;
 App.use(BodyParser.json());
 App.use(Express.static("Public"));
-App.use(BodyParser.urlencoded({ 
+App.use(BodyParser.urlencoded({
     extended: true
 }));
 
@@ -35,45 +35,15 @@ App.get("Game/GamePage", function(req,res){
   res.sendFile("/Game/GamePage.html");
 });
 
-
-
+//var Database = require("/Server/Database.js");
+// this if for when the signup form is submitted
 App.post('/SignUpSubmit', function (req, res) {
+  // this is where the variables get saved so we can use them
     var Username = req.body.Username;
     var Password = req.body.Password;
     var RePassword = req.body.RePassword;
 
+
+
     res.send(Username + ' '+Password+' You\'re all signed up');
 });
-
-
-
-// the server all functionallity goes here
-/*
-const Server = Http.createServer(function (req, res) {
-  res.writeHead(200, { "Content-Type": "text/html" }); //status code
-  Fs.readFile("../index.html", function (Error, data) {
-    if (Error) {
-      res.writeHead(404);
-      res.write("Error: File Not Found " + data);
-    }else{
-      Fs.readFile("../Public/Styles.css", function (Error, dataC) {
-        res.writeHead(dataC);
-      });
-      res.write(data);
-
-
-    }
-
-    res.end(); // end command
-  });
-});
-// this is checking that the server is up and listening if is it will output
-// everything is working if not will output an error has happened
-Server.listen(Port, function (Error) {
-  if (Error) {
-    console.log("something Went wrong :(", Error);
-  } else {
-    console.log("Server is listening on port " + Port);
-  }
-});
-*/
