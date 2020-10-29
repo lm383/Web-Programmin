@@ -35,15 +35,16 @@ App.get("Game/GamePage", function(req,res){
   res.sendFile("/Game/GamePage.html");
 });
 
-//var Database = require("/Server/Database.js");
 // this if for when the signup form is submitted
 App.post('/SignUpSubmit', function (req, res) {
   // this is where the variables get saved so we can use them
     var Username = req.body.Username;
     var Password = req.body.Password;
     var RePassword = req.body.RePassword;
+    const Database = require("./Server/Database.js")
+    var Result = Database.SignUpTo(Username, Password);
 
 
 
-    res.send(Username + ' '+Password+' You\'re all signed up');
+    res.send(Result);
 });
