@@ -1,6 +1,6 @@
 //import "../Server/Database";
 //import { SignUpTo as _SignUpTo } from "../Server/Database.js";
-var Database = require("../Server/Database");
+//var Database = require("../Server/Database");
 
 function HideShowSign() {
   // here we will hide the SignUp form
@@ -28,7 +28,7 @@ function HideShowLog() {
     Button.style.display = "Block";
   }
 }
-
+/*
 function SignUpTo() {
   let Username = document.forms["SignUpForm"]["Username"].value;
   let Password = document.forms["SignUpForm"]["Password"].value;
@@ -48,3 +48,4 @@ function SignUpTo() {
     DisplayP.textContent = "Error: Passwords not same";
   }
 }
+*/

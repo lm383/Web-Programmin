@@ -1,18 +1,40 @@
 // imported the http library and set up the port for the server
 const Http = require("http");
 const Fs = require("fs");
-var express = require('express');
-var app = express();
+const Path = require('path');
+var Express = require('express');
+var App = Express();
 //var MySQL = require("mysql");
 const Port = 3000;
 
+App.use(Express.static("Public"));
 
+const Server = App.listen(Port, function (Error) {
+  if (Error) {
+    console.log("something Went wrong :(", Error);
+  } else {
+    var Host = Server.address().address
+    var Port = Server.address().port
 
-/*
-app.get('/', function (req, res) {
-    res.sendFile('../index.html');
+    console.log("Server app listening at http://%s:%s", Host, Port)
+    //console.log("Server is listening on port " + Port);
+  }
 });
 
+// this is the home page
+App.get("/", function(req,res){
+  res.sendFile("/index.html");
+});
+// for when user trys to click the game page link this will allow them to actually go there
+App.get("Game/GamePage", function(req,res){
+  res.sendFile("/Game/GamePage.html");
+});
+/*
+App.get("/ClientSide", function(req,res){
+  res.sendFile("/ClientSide.js");
+});
+*/
+/*
 
 app.post('/submit-SignUp', function (req, res) {
     var name = req.body.Username + ' ' + req.body.Password;
@@ -26,7 +48,7 @@ var server = app.listen(5000, function () {
 */
 
 // the server all functionallity goes here
-
+/*
 const Server = Http.createServer(function (req, res) {
   res.writeHead(200, { "Content-Type": "text/html" }); //status code
   Fs.readFile("../index.html", function (Error, data) {
@@ -34,7 +56,12 @@ const Server = Http.createServer(function (req, res) {
       res.writeHead(404);
       res.write("Error: File Not Found " + data);
     }else{
+      Fs.readFile("../Public/Styles.css", function (Error, dataC) {
+        res.writeHead(dataC);
+      });
       res.write(data);
+
+
     }
 
     res.end(); // end command
@@ -49,3 +76,4 @@ Server.listen(Port, function (Error) {
     console.log("Server is listening on port " + Port);
   }
 });
+*/
