@@ -4,7 +4,26 @@ var express = require('express');
 var app = express();
 //var MySQL = require("mysql");
 const Port = 3000;
+
+
+
+
+app.get('/', function (req, res) {
+    res.sendFile('/../index.html');
+});
+
+app.post('/submit-SignUp', function (req, res) {
+    var name = req.body.Username + ' ' + req.body.Password;
+
+    res.send(name + ' Submitted Successfully!');
+});
+
+var server = app.listen(5000, function () {
+    console.log('Node server is running..');
+});
+
 // the server all functionallity goes here
+/*
 const Server = Http.createServer(function (req, res) {
   res.writeHead(200, { "Content-Type": "text/html" }); //status code
   res.readFile("index.html", function (Error, data) {
@@ -26,3 +45,4 @@ Server.listen(Port, function (Error) {
     console.log("Server is listening on port " + Port);
   }
 });
+*/
