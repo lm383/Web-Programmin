@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--<link rel="stylesheet" type="text/css" href="still_characters.css">-->
+
+<html>
+<head>
+<body style= "background-color: black;">
+<!--<div class= "circle"></div>
+<div class= "rectangle"></div>
+<div class= "rectangle2"></div>
+<div class= "oval"></div>
+<div class= "oval2"></div>-->
+<style>
+
+.circle{
+	width:50px;
+	height:50px;
+	background-color: red;
+	border-radius: 50%;
+	border: 4px solid #B22222;
+	position: absolute;
+	margin-top: 0px;
+	margin-left: 50px;
+	z-index: 1;
+
+}
+
+.rectangle{
+	width:10px;
+	height: 50px;
+	background-color: red;
+	position: absolute;
+	margin-top: 45px;
+	margin-left: 100px;
+	transform: rotate(-40deg);
+	animation-name: rectangle1;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+
+}
+
+.rectangle2{
+	width:10px;
+	height: 50px;
+	background-color: red;
+	position: absolute;
+	margin-top: 45px;
+	margin-left: 50px;
+	transform: rotate(40deg);
+	animation-name: rectangle2;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+
+}
+
+.oval{
+	width:25px;
+	height:12px;
+	background-color: red;
+	border-radius: 100px/50px;
+	position: absolute;
+	margin-top: 90px;
+	margin-left: 105px;
+	transform: rotate(-40deg);
+	animation-name: oval1;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+
+}
+
+.oval2{
+	width:25px;
+	height:12px;
+	background-color: red;
+	border-radius: 100px/50px;
+	position: absolute;
+	margin-top: 85px;
+	margin-left: 20px;
+	transform: rotate(40deg);
+	animation-name: oval2;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+
+
+}
+
+@keyframes rectangle1 {
+	{position: absolute;margin-top: 45px;margin-left: 100px;transform: rotate(-20deg);}
+}
+@keyframes rectangle2 {
+	{position: absolute;margin-top: 45px;margin-left: 50px;transform: rotate(20deg);}
+}
+@keyframes oval1 {
+	{position: absolute;margin-top: 90px;margin-left: 105px;transform: rotate(-20deg);}
+}
+@keyframes oval2 {
+	{position: absolute;margin-top: 85px;margin-left: 20px;transform: rotate(20deg);}
+}
+</style>
+</head>
+
+<div></div>
+
+</body>
+</html>
+
