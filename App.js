@@ -4,7 +4,7 @@ const Fs = require("fs");
 const Path = require('path');
 const BodyParser = require('body-parser')
 const Express = require('express');
-const Io = require("socket.io");
+const Io = require("socket.io")(Server);
 const App = Express();
 
 //var MySQL = require("mysql");
@@ -61,4 +61,18 @@ App.post('/SignUpSubmit', function (req, res) {
       res.end('<br><a href="index.html" rel="nofollow">Back</a>');
     }
 
+});
+
+
+
+// socket.io connection to hopefully allow several people on my Server
+Io.on("connection", function (socket) {
+  console.log("User connected");
+  let id = socket.id;
+
+  socket.on("cinput", (data) => {
+    data.id = id;
+    socket.emit("sinput", data);
+    socket.broadcast.emit("sinput", data);
+  });
 });
