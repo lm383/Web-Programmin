@@ -38,7 +38,7 @@ module.exports = {
     }
 
   ,
-  Check: function Check(Username, Password){
+  Check: function Check(Username){
     //validation
     var QuerySearch = `SELECT * FROM Logins WHERE Username= '`+Username+`'`;
     Con.query(QuerySearch, function (err, result, fields) {
@@ -57,7 +57,21 @@ module.exports = {
         return null;
       };
     });
-  }
+  },
+  LogInTo: function LogInTo(Username, Password) {
+    var QueryInsert = `SELECT * FROM Logins WHERE Username= '`+
+      Username+`' AND Password = '`+
+      Password+`)`;
+
+    // if the username does not exist we can succeffully address
+
+    Con.query(QueryInsert, function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      return true;
+    });
+
+    }
 
 
 
