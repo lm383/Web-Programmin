@@ -44,6 +44,7 @@ module.exports = {
     Con.query(QuerySearch, function (err, result, fields) {
       // searches database for username if found return result false to say no go
       if (err) throw err;
+      // still need to fix validation
       var rows;
       Object.keys(result).forEach(function(key) {
       var rows = 1;
@@ -68,6 +69,7 @@ module.exports = {
     Con.query(QueryInsert, function (err, result) {
       if (err) throw err;
       console.log(result);
+      // add check if successfully logged in
       return true;
     });
 
