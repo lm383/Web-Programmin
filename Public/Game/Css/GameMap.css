@@ -1,0 +1,12 @@
+/*
+this will be for the borders so players cant go off screen and any walls in the map
+so we can display it and add collision code
+*/
+Border{
+  height: 100px;
+  width: 1000px;
+  box-sizing: border-box;
+  outline: 5px solid white;
+  position : relative;
+  background-color : #000000;
+}
