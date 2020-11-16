@@ -4,9 +4,9 @@ var left = 0;
 var playerTop = 0;
 
 function move(e){
-//should move the square down, doesnt work yet
+//should move the square down, by adding to top
  if(e.keyCode == 40){
-	 playerTop += 2;
+	 playerTop += 4;
 	 player.style.top = playerTop + "px";
  }
 
@@ -22,9 +22,9 @@ if(e.keyCode == 37){
 	player.style.left = (parseInt(left) + left) + "px";
 }
 
-//should move the square up, doesnt work
+//should move the square up, by taking away from top
 if(e.keyCode == 38){
-	playerTop -= 2;
+	playerTop -= 4;
 	player.style.top = playerTop + "px";
 }
 }
