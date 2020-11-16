@@ -69,10 +69,4 @@ App.post('/SignUpSubmit', function (req, res) {
 Io.on("connection", function (socket) {
   console.log("User connected");
   let id = socket.id;
-
-  socket.on("cinput", (data) => {
-    data.id = id;
-    socket.emit("sinput", data);
-    socket.broadcast.emit("sinput", data);
-  });
 });

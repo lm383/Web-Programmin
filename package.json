@@ -5,12 +5,12 @@
   "keywords": [],
   "main": "/Server/App.js",
   "dependencies": {
+    "express": "^4.13.3",
     "jquery": "3.5.1",
     "mysql": "8.0.21",
     "node.js": "0.0.1-security",
     "requirejs": "2.3.6",
-    "express":"4.13.3",
-    "socket.io": "2.3.0"
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "1.18.4"
