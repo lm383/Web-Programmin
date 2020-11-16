@@ -4,7 +4,7 @@ const Fs = require("fs");
 const Path = require('path');
 const BodyParser = require('body-parser')
 const Express = require('express');
-const Io = require("socket.io")(Server);
+
 const App = Express();
 
 //var MySQL = require("mysql");
@@ -66,6 +66,8 @@ App.post('/SignUpSubmit', function (req, res) {
 
 
 // socket.io connection to hopefully allow several people on my Server
+const Io = require("socket.io")(Server);
+
 Io.on("connection", function (socket) {
   console.log("User connected");
   let id = socket.id;
