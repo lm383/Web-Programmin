@@ -3,7 +3,7 @@
 1) Download all files
 2) Use command line to enter the directory the files are saved to
 3) Type node app in command line and hit enter
-4) Open browser of your choice and type the url  https://localhost3000
+4) Open browser of your choice (preferably firefox) and type the url  https://localhost3000
 5) That's the website enjoy!
 # prerequisites
 - have node js installed
