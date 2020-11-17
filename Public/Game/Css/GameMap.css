@@ -10,3 +10,23 @@ Border{
   position : relative;
   background-color : #000000;
 }
+/*class which creates a white dashed line in the middle of the screen */
+.dashed-lines {
+  content:"";
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  bottom: 0px;
+  left: 50%;
+  border-left: 2px dashed white;
+}
+
+.upper-wall {
+  content:"";
+  position: absolute;
+  z-index: -1;
+  top:75px;
+  bottom:750px;
+  left: 15%;
+  border-left: 3px solid white;
+}
