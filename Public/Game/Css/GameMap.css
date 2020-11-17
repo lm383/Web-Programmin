@@ -21,12 +21,10 @@ Border{
   border-left: 2px dashed white;
 }
 
-.upper-wall {
-  content:"";
-  position: absolute;
-  z-index: -1;
-  top:75px;
-  bottom:750px;
-  left: 15%;
+.verticle-wall {
   border-left: 3px solid white;
+  height: 10vh;
+  position:absolute;
+  left: 15%;
+  top: 75px;
 }
