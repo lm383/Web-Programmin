@@ -7,6 +7,12 @@
 	<link rel="stylesheet" href='../Css/Styles.css'>
 	<!-- links to the css page to create the game map-->
 	<link rel="stylesheet" href='Css/GameMap.css'>
+	<!-- the JavaScript -->
+	<script src="JavaScript/PlayerMovement.js"></script>
+	<script src="JavaScript/Game.js"></script>
+	<!--this is to help socket.io stuff-->
+	<script src="/socket.io/socket.io.js"></script>
+
 	<style>
 		#player{
 		height: 10vh; /*does 10% of the viewport height */
@@ -19,17 +25,18 @@
 </head>
 
 <body>
+	<h3 id = "info"> </h3>
 	<div class="dashed-lines"></div>
 	<div class="verticle-wall"></div>
 	<div id="player"></div>
 
-		<script src="JavaScript/PlayerMovement.js"></script>
-		<script src="JavaScript/Game.js"></script>
+
 
 		<!-- the button to start game TEMPORARY-->
 		<a href="GamePage"  onclick="GameStart()">
 		Start
 		</a>
+
 
 </body>
 </html>
