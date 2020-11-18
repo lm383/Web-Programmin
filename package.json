@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "/Server/App.js",
+  "main": "App.js",
+  "scrips": {
+    "start":"node app",
+    "dev":"nodemon app"
+  },
   "dependencies": {
     "express": "^4.13.3",
     "jquery": "3.5.1",
