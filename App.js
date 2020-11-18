@@ -63,12 +63,71 @@ App.post('/SignUpSubmit', function (req, res) {
 
 });
 
-
-
 // socket.io connection to hopefully allow several people on my Server
-const Io = require("socket.io")(Server);
+const SocketIo = require("socket.io");
+const Io = SocketIo(Server);
+// server keeps centralized track of the users Max 6 at a time
+var Users = [null, null, null, null, null, null];
+var ConnNum = 0;
+Io.on("connection", socket => {
+  // find a unique number for the player to identfy them later first set to -1
+  let PlayerIndex = -1;
+  for(const i in Users){
+    if (Users[i] == null){
+      PlayerIndex = i;
+      ConnNum++;
+      break;
+    };
+  };
 
-Io.on("connection", function (socket) {
-  console.log("User connected");
-  let id = socket.id;
+
+
+  // tell the connected clients stuff like players index and how many are connected
+  socket.emit("player-number", PlayerIndex);
+  socket.emit("Users-Online", ConnNum);
+
+  // currently ignore 7th and up players for nofollow
+  if (PlayerIndex == -1) return;
+
+  /*
+  socket.on("update", (data) => {
+      let uniqueid = data.uniqueid; // makes unique id for player
+
+      // if users dont have inoqueid
+      if (!users.hasOwnProperty(uniqueid)) {
+        users[uniqueid] = {};
+        users[uniqueid].uniqueid = uniqueid;
+        users[uniqueid].timestamp = curTimeStamp;
+        users[uniqueid].socketid = socket.id;
+        users[uniqueid].ip = ip.address();
+        users[uniqueid].x = data.x;
+        users[uniqueid].y = data.y;
+      }
+
+      users[uniqueid].uniqueid = uniqueid;
+      users[uniqueid].timestamp = curTimeStamp;
+      users[uniqueid].socketid = socket.id;
+      users[uniqueid].ip = ip.address();
+      users[uniqueid].x = data.x;
+      users[uniqueid].y = data.y;
+
+      let senddata = {
+        cmd: "sync",
+        timestamp: curTimeStamp,
+        users: []
+      };
+      for (let uid in users) {
+        let delay = curTimeStamp - users[uid].timestamp;
+        if (delay > 5000) {
+          console.log("killing unique: " + uniqueid + ", timed out");
+          delete users[uid];
+          continue;
+        }
+        senddata.users.push(users[uid]);
+      }
+
+      socket.emit("sync", senddata);
+      socket.broadcast.emit("sync", senddata);
+    });*/
+
 });
