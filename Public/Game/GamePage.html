@@ -20,12 +20,13 @@
 		outline: 1px solid black;
 		position : relative;
 		background-color : #FF0000;
+		text-align: center;
 		}
 	</style>
 </head>
 
 <body>
-	<h3 id = "info"> </h3>
+	<h5 id = "info" style = "opacity: 0.2;z-index: 5;">Users Connected 0 out of at least 2 </h5>
 	<div class="dashed-lines"></div>
 	<div class="verticle-wall"></div>
 	<div id="player"></div>
@@ -33,9 +34,12 @@
 
 
 		<!-- the button to start game TEMPORARY-->
-		<a href="GamePage"  onclick="GameStart()">
+		<button id="start" href="GamePage"  onclick="SetUp();return false;">
 		Start
-		</a>
+		</button>
+		<button id="stop" href="GamePage" style="display:none;" onclick="GameClose();">
+		Stop
+		</button>
 
 
 </body>

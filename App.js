@@ -4,7 +4,6 @@ const Fs = require("fs");
 const Path = require('path');
 const BodyParser = require('body-parser')
 const Express = require('express');
-
 const App = Express();
 
 //var MySQL = require("mysql");
@@ -39,6 +38,10 @@ App.get("/Game/GamePage", function(req,res){
   res.sendFile("Game/GamePage.html",{ root : __dirname+"/Public"});
 });
 
+App.get("/Game/loading_bar", function(req,res){
+  res.sendFile("Game/loading_bar.html",{ root : __dirname+"/Public"});
+});
+
 // this if for when the signup form is submitted
 App.post('/SignUpSubmit', function (req, res) {
   // this is where the variables get saved so we can use them
@@ -64,70 +67,42 @@ App.post('/SignUpSubmit', function (req, res) {
 });
 
 // socket.io connection to hopefully allow several people on my Server
-const SocketIo = require("socket.io");
-const Io = SocketIo(Server);
+const io = require("socket.io").listen(Server);
+//const io = require('socket.io-client');
 // server keeps centralized track of the users Max 6 at a time
 var Users = [null, null, null, null, null, null];
 var ConnNum = 0;
-Io.on("connection", socket => {
+let PlayerIndex = -1;
+io.sockets.on("connection", function(Socket) {
+  console.log("connection successful");
   // find a unique number for the player to identfy them later first set to -1
-  let PlayerIndex = -1;
   for(const i in Users){
     if (Users[i] == null){
-      PlayerIndex = i;
+      PlayerIndex++;
       ConnNum++;
+      Users[i] == "Taken";
       break;
     };
   };
+  // on conncetion it will tell the client their index and people currently online
+  Socket.emit("connection", PlayerIndex, ConnNum);
+  console.log(`Player ${PlayerIndex} has connected`);
 
-
-
-  // tell the connected clients stuff like players index and how many are connected
-  socket.emit("player-number", PlayerIndex);
-  socket.emit("Users-Online", ConnNum);
-
-  // currently ignore 7th and up players for nofollow
-  if (PlayerIndex == -1) return;
-
-  /*
-  socket.on("update", (data) => {
-      let uniqueid = data.uniqueid; // makes unique id for player
-
-      // if users dont have inoqueid
-      if (!users.hasOwnProperty(uniqueid)) {
-        users[uniqueid] = {};
-        users[uniqueid].uniqueid = uniqueid;
-        users[uniqueid].timestamp = curTimeStamp;
-        users[uniqueid].socketid = socket.id;
-        users[uniqueid].ip = ip.address();
-        users[uniqueid].x = data.x;
-        users[uniqueid].y = data.y;
-      }
-
-      users[uniqueid].uniqueid = uniqueid;
-      users[uniqueid].timestamp = curTimeStamp;
-      users[uniqueid].socketid = socket.id;
-      users[uniqueid].ip = ip.address();
-      users[uniqueid].x = data.x;
-      users[uniqueid].y = data.y;
-
-      let senddata = {
-        cmd: "sync",
-        timestamp: curTimeStamp,
-        users: []
-      };
-      for (let uid in users) {
-        let delay = curTimeStamp - users[uid].timestamp;
-        if (delay > 5000) {
-          console.log("killing unique: " + uniqueid + ", timed out");
-          delete users[uid];
-          continue;
-        }
-        senddata.users.push(users[uid]);
-      }
-
-      socket.emit("sync", senddata);
-      socket.broadcast.emit("sync", senddata);
-    });*/
+  Socket.on("Update", function(position){
+    // here we will update the player
+  });
+  // when the user disconnects
+  Socket.on("disconnect",()=>{
+    // set PlayerIndex to -1 so it is available and -1 from ConnNum
+    console.log(`Player ${PlayerIndex} disconnected`);
+    Users[PlayerIndex] = null;
+    ConnNum--;
+    // if no one is connected reset index
+    if (ConnNum <= 0){
+      PlayerIndex = -1;
+    };
+    //Tell everyone what player numbe just disconnected
+    Socket.broadcast.emit('player-disconnection', PlayerIndex);
+  });
 
 });
