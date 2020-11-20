@@ -1,5 +1,5 @@
 // this will initailise the game
-function GameStart(PlayerNum, TotalPlayers){
+function GameStart(PlayerNum){
   // will need to set timer set points to 0 on both sides and have players on a side, spwan on that sides
   // etc etc
   // then if PlayerIndex is even blue team else red team
@@ -77,19 +77,28 @@ function SetUp(){
     };
     TotalPlayers = numb;
     Info.innerHTML= "Users Connected "+numb+" out of at least 2";
-    // now we start the game
+    // now we initialse teams
     let Team = null;
-    Team = GameStart(PlayerNum, TotalPlayers);
-
+    if (PlayerNum == 0 || PlayerNum%2 == 0){
+      // if 0 / even red team
+      Team = "#FF0000";
+      alert("Team Red");
+    }else{
+      // else blue
+      alert("Team Blue");
+      Team = "#0000FF";
+    };
+    // put make sure player is their colour
     PlayerDis.style.backgroundColor = Team;
     if (Team === "#0000FF"){
-      PlayerDis.style.left = "100%";
+      // if player is blue put them on their side
+      PlayerDis.style.left = "95%";
     };
     // if player closes window go to GameClose function
     window.onbeforeunload = GameClose(Socket);
   });
 
-  function GameClose(){
+  function GameClose(Socket){
     // when window is closed disconnect player
     Socket.emit('disconnection', {});
   };
