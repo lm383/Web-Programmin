@@ -7,6 +7,7 @@
 5) That's the website enjoy!
 # prerequisites
 - have node js (v12.19.0) installed
+- have npm (6.14.8) installed
 # specs
 use HTML 5 (XHTML syntax), CSS 3, DOM 1+ and JavaScript and Client and server side technologiesand Database(or server storage system) like SOL or PHP
 2-d with animation
