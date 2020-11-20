@@ -33,6 +33,9 @@ App.get("/", function(req,res){
 App.get("/index.html", function(req,res){
   res.sendFile("index.html");
 });
+App.get("/Game/loading_bar.html", function(req,res){
+  res.sendFile("Game/loading_bar.html");
+});
 // for when user trys to click the game page link this will allow them to actually go there
 App.get("/Game/GamePage", function(req,res){
   res.sendFile("Game/GamePage.html",{ root : __dirname+"/Public"});
