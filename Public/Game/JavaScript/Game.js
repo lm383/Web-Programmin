@@ -103,6 +103,7 @@ function SetUp(){
   // this will show other players and positions
   let Playing = false;
   if (TotalPlayers> 2){
+    console.log("GAME Starting");
     Playing = true;
   };
   EndButt.addEventListener("click", function(){
@@ -115,6 +116,7 @@ function SetUp(){
   let PlayerPos = [ , ];
   let Playersend = PlayerNum.innerHTML;
   while (Playing){
+    console.log("GAME Start");
     PlayerPos[0] = window.getComputedStyle(PlayerDis).getPropertyValue('top');
     PlayerPos[1] = window.getComputedStyle(PlayerDis).getPropertyValue('left');
     Socket.emit("Update",{ Playersend, PlayerPos});
@@ -122,6 +124,20 @@ function SetUp(){
       let OtherNum = data.UserIndex;
       let OtherPos = data.Position;
       alert(OtherNum + " Pos: "+ OtherPos);
+      var OtherPlayer = document.createElement("OtherPlayer");
+      // make other player
+      OtherPlayer.style.height = "10vh";
+      OtherPlayer.style.width = "5%";
+      OtherPlayer.style.outline = "1px solid black";
+      OtherPlayer.style.position = "relative";
+      if (OtherNum !=0 || OtherNum%2 ==0){
+        OtherPlayer.style.backgroundColor = "#FF0000";
+      }else{
+        OtherPlayer.style.backgroundColor = "#0000FF";
+      }
+      OtherPlayer.style.textAlign = "center";
+      // adds the player to user screen
+      document.body.appendChild(OtherPlayer);
     });
 
 
