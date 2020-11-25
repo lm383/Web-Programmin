@@ -12,9 +12,9 @@ table name: Logins
 // this is my database connection so I can access it
 var Con = MySQL.createConnection({
   host: "sql2.freemysqlhosting.net",
-  user: "sql2369364",
-  password: "bX9!iX9%",
-  database:"sql2369364"
+  user: "sql2378495",
+  password: "wB1!fZ3!",
+  database:"sql2378495"
 });
 
 // this is where all actions that need done to the database e.g new player signup / login/ highscore update
