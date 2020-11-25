@@ -14,6 +14,7 @@ App.use(BodyParser.urlencoded({
     extended: true
 }));
 
+
 const Server = App.listen(Port, function (Error) {
   if (Error) {
     console.log("something Went wrong :(", Error);
@@ -22,7 +23,7 @@ const Server = App.listen(Port, function (Error) {
     var Port = Server.address().port
 
     console.log("Server app listening at http://%s:%s", Host, Port)
-    //console.log("Server is listening on port " + Port);
+    // Host = local host and Port = 3000
   }
 });
 
@@ -60,7 +61,7 @@ App.post('/SignUpSubmit', function (req, res) {
       Database.SignUpTo(Username, Password);
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write("succeffully signed Up. welcome "+ Username);
-      res.end('<br><a href="/Game/GamePage.html" rel="nofollow">START</a>');
+      res.end('<br><a href="index.html" rel="nofollow">Back</a>');
     }else{
       // takes you to page where says error happened and gives option to go back to start
       res.writeHead(200, {'Content-Type': 'text/html'});
@@ -79,8 +80,8 @@ App.post('/LogInSubmit', function (req, res) {
     const Database = require("./Server/Database.js")
     // here we call the SignUpTo function so it can add the data to the database
     Database.GetLog(Username, Password, function(err, result){
-      console.log(result);
       if (result){
+
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write("succeffully logged in. Welcome "+ Username);
         res.end('<br><a href="/Game/GamePage.html" rel="nofollow">START</a>');
