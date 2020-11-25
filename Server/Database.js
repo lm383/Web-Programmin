@@ -3,11 +3,11 @@ var MySQL = require("mysql");
 /*
 Database info:
 Server: sql2.freemysqlhosting.net
-Database/username: sql2369364
-password:bX9!iX9%
+Database/username: sql2378495
+password:wB1!fZ3!
 portNm: 3306
 table name: Logins
-
+table columns: Username, Password and HighScore
 */
 // this is my database connection so I can access it
 var Con = MySQL.createConnection({
@@ -39,7 +39,7 @@ module.exports = {
 
   ,
   Check: function Check(Username){
-    //validation
+    //validation check if the username was already taken
     var QuerySearch = `SELECT * FROM Logins WHERE Username= '`+Username+`'`;
     Con.query(QuerySearch, function (err, result) {
       // searches database for username if found return result false to say no go
@@ -59,9 +59,7 @@ module.exports = {
     var QuerySearch = `SELECT * FROM Logins WHERE Username= '`+
       Username+`' AND Password = '`+
       Password+`'`;
-
     // if the username does not exist we can succeffully address
-
     Con.query(QuerySearch, function (err, result) {
       if (err) throw err;
       // if successfully logged in
@@ -69,13 +67,14 @@ module.exports = {
         // then there was a response
         return true;
       }else{
+        // there was no response meaning user either never existed/ input error
         return false;
       };
-
     });
+  },
 
-    }
-
-
-
+  UpdateHighScore: function UpdateHighScore(Username, HighScore){
+    // here at the end of a game / game closes the HighScore is checked and if
+    // it was beaten it will update the HighScore
+  }
 };
