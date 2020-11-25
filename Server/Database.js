@@ -31,7 +31,6 @@ module.exports = {
 
     Con.query(QueryInsert, function (err, result) {
       if (err) throw err;
-      console.log(result);
       return true;
     });
 
@@ -55,26 +54,39 @@ module.exports = {
       };
     });
   },
-  LogInTo: function LogInTo(Username, Password) {
-    var QuerySearch = `SELECT * FROM Logins WHERE Username= '`+
-      Username+`' AND Password = '`+
-      Password+`'`;
-    // if the username does not exist we can succeffully address
-    Con.query(QuerySearch, function (err, result) {
-      if (err) throw err;
-      // if successfully logged in
-      if (result.length > 0){
-        // then there was a response
-        return true;
-      }else{
-        // there was no response meaning user either never existed/ input error
-        return false;
-      };
-    });
+  GetLog: function GetLog(Username, Password, callback){
+    LogInTo(Username, Password, function (err, rows) {
+     if (!err) {
+        callback(null,rows);
+     }
+     else {
+        callback(true,err);
+     }
+  });
+
   },
+  //LogInTo: ,
 
   UpdateHighScore: function UpdateHighScore(Username, HighScore){
     // here at the end of a game / game closes the HighScore is checked and if
     // it was beaten it will update the HighScore
   }
 };
+
+function LogInTo(Username, Password, callback) {
+  var QuerySearch = `SELECT * FROM Logins WHERE Username= '`+
+    Username+`' AND Password = '`+
+    Password+`'`;
+  // if the username does not exist we can succeffully address
+  Con.query(QuerySearch, function (err, result) {
+    if (err) throw err;
+    // if successfully logged in
+    if (result.length > 0){
+      // then there was a response
+      return callback(null,true);;
+    }else{
+      // there was no response meaning user either never existed/ input error
+      return callback(null,false);;
+    };
+  });
+}
