@@ -45,3 +45,14 @@ button_cont {
    opacity: 1;
    right: 0;
  }
+
+ #start{
+   position: absolute;
+   top: 0%;
+   left: 50%;
+ }
+ #stop {
+   position: absolute;
+   top: 0%;
+   left: 50%;
+ }
