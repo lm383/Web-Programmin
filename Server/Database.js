@@ -41,36 +41,37 @@ module.exports = {
   Check: function Check(Username){
     //validation
     var QuerySearch = `SELECT * FROM Logins WHERE Username= '`+Username+`'`;
-    Con.query(QuerySearch, function (err, result, fields) {
+    Con.query(QuerySearch, function (err, result) {
       // searches database for username if found return result false to say no go
       if (err) throw err;
-      // still need to fix validation
-      var rows;
-      Object.keys(result).forEach(function(key) {
-      var rows = 1;
-      console.log(rows);
-      });
-      console.log(rows);
-      if (rows===1){
-        return result;
-      }else if (rows === undefined){
-        // if no results found then go ahead
-        return null;
+      // add check if no results
+      console.log(result.length);
+      if (result.length > 0){
+        // then there was a response
+        return true;
+      }else{
+        // no response
+        return false;
       };
     });
   },
   LogInTo: function LogInTo(Username, Password) {
-    var QueryInsert = `SELECT * FROM Logins WHERE Username= '`+
+    var QuerySearch = `SELECT * FROM Logins WHERE Username= '`+
       Username+`' AND Password = '`+
-      Password+`)`;
+      Password+`'`;
 
     // if the username does not exist we can succeffully address
 
-    Con.query(QueryInsert, function (err, result) {
+    Con.query(QuerySearch, function (err, result) {
       if (err) throw err;
-      console.log(result);
-      // add check if successfully logged in
-      return true;
+      // if successfully logged in
+      if (result.length > 0){
+        // then there was a response
+        return true;
+      }else{
+        return false;
+      };
+
     });
 
     }
