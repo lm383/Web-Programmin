@@ -82,10 +82,8 @@ function SetUp(){
     if (PlayerNum == 0 || PlayerNum%2 == 0){
       // if 0 / even red team
       Team = "#FF0000";
-      alert("Team Red");
     }else{
       // else blue
-      alert("Team Blue");
       Team = "#0000FF";
     };
     // put make sure player is their colour
@@ -100,7 +98,34 @@ function SetUp(){
 
   function GameClose(Socket){
     // when window is closed disconnect player
-    Socket.emit('disconnection', {});
+    Socket.emit('disconnection', function() {});
   };
+  // this will show other players and positions
+  let Playing = false;
+  if (TotalPlayers> 2){
+    Playing = true;
+  };
+  EndButt.addEventListener("click", function(){
+    Playing = false;
+    StartButt.style.display = "block";
+    EndButt.style.display = "none";
+    GameClose(Socket);
+    location.reload();
+  });
+  let PlayerPos = [ , ];
+  let Playersend = PlayerNum.innerHTML;
+  while (Playing){
+    PlayerPos[0] = window.getComputedStyle(PlayerDis).getPropertyValue('top');
+    PlayerPos[1] = window.getComputedStyle(PlayerDis).getPropertyValue('left');
+    Socket.emit("Update",{ Playersend, PlayerPos});
+    Socket.on("Sync", function(data) {
+      let OtherNum = data.UserIndex;
+      let OtherPos = data.Position;
+      alert(OtherNum + " Pos: "+ OtherPos);
+    });
+
+
+  };
+
 
 };

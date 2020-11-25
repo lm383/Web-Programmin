@@ -11,7 +11,7 @@
 	<script src="JavaScript/PlayerMovement.js"></script>
 	<script src="JavaScript/Game.js"></script>
 	<!--this is to help socket.io stuff-->
-	<script src="/socket.io/socket.io.js"></script>
+	<script src="../socket.io/socket.io.js"></script>
 
 	<style>
 		#player{
@@ -33,13 +33,13 @@
 
 
 
-		<!-- the button to start game TEMPORARY-->
-		<button id="start" href="GamePage"  onclick="SetUp();return false;">
-		Start
+		<!-- the button to start game -->
+		<button id="start" href="GamePage"  onmousedown="SetUp();return false;">
+		Start game
 		</button>
-		<!-- currently not working -->
-		<button id="stop" href="GamePage" style="display:none;" onclick="">
-		Stop
+		<!-- onclick event listener in Game.js is activated -->
+		<button id="stop" href="GamePage" style="display:none;" >
+		Stop game
 		</button>
 
 

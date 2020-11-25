@@ -91,8 +91,13 @@ io.sockets.on("connection", function(Socket) {
   Socket.emit("connection", PlayerIndex, ConnNum);
   console.log(`Player ${PlayerIndex} has connected`);
 
-  Socket.on("Update", function(position){
+  Socket.on("Update", function(data) {
+    let UserIndex = data.Playersend;
+    let Position = data.PlayerPos;
     // here we will update the player
+    Socket.broadcast.send("Sync", {UserIndex, Position});
+    console.log(UserIndex+ " "+ Position);
+
   });
   // when the user disconnects
   Socket.on("disconnect",()=>{
@@ -105,7 +110,7 @@ io.sockets.on("connection", function(Socket) {
       PlayerIndex = -1;
     };
     //Tell everyone what player numbe just disconnected
-    Socket.broadcast.emit('player-disconnection', PlayerIndex);
+    //Socket.broadcast.emit('player-disconnection', PlayerIndex);
   });
 
 });
