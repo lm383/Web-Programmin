@@ -108,8 +108,16 @@ window.onload = function(){
 	function wallCollision(){
 		var playerPos = player.getBoundingClientRect(); //initialises the variables for the position
 		var vWalls = document.getElementsByClassName('verticle-wall'); //gets all the elements of the class verticle-wall
+		var hWalls = document.getElementsByClassName('horizontal-wall');
 		for (var i = 0, max = vWalls.length; i < max; i++){ //repeats for all elements in vWalls
 			var wall = vWalls[i].getBoundingClientRect(); //gets the position of the current wall
+			// if(playerPos.right < wall.right && playerPos.right > wall.left){
+			// 	isCollidingRight = true;
+			// 	window.alert("Collide");
+			// }
+		}
+		for (var j = 0, max = hWalls.length; j < max; j++){
+			var wall = hWalls[i].getBoundingClientRect();
 
 		}
 	}
