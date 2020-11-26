@@ -1,7 +1,7 @@
 div.hidden {
   display: none;
 }
-
+/* code for an interactive button */
 button.hidden {
   display: none;
 }
@@ -9,7 +9,7 @@ body{
   color: white;
   background-image:url("../Image/background1.jpg");
 }
-
+/* code for the transition of the button */
 button_cont {
    border-radius: 4px;
    background: none;
@@ -24,6 +24,7 @@ button_cont {
    cursor: pointer;
    margin: 5px;
  }
+ /* */
  .button_cont span {
    cursor: pointer;
    display: inline-block;
