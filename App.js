@@ -29,25 +29,25 @@ const Server = App.listen(Port, function (Error) {
 
 // this is the home page
 App.get("/", function(req,res){
-  res.sendFile("index.html");
+  res.sendFile("Index.html");
 });
-App.get("/index.html", function(req,res){
-  res.sendFile("index.html");
+App.get("/Index.html", function(req,res){
+  res.sendFile("Index.html");
 });
-App.get("/Game/loading_bar.html", function(req,res){
-  res.sendFile("Game/loading_bar.html");
+App.get("/Game/LoadingBar.html", function(req,res){
+  res.sendFile("Game/LoadingBar.html");
 });
 // for when user trys to click the game page link this will allow them to actually go there
 App.get("/Game/GamePage", function(req,res){
   res.sendFile("Game/GamePage.html",{ root : __dirname+"/Public"});
 });
 
-App.get("/Game/loading_bar", function(req,res){
-  res.sendFile("Game/loading_bar.html",{ root : __dirname+"/Public"});
+App.get("/Game/LoadingBar", function(req,res){
+  res.sendFile("Game/LoadingBar.html",{ root : __dirname+"/Public"});
 });
-App.get("/Game/highscores_page", function(req,res){
+App.get("/Game/HighScorePage", function(req,res){
   var Result = GetHighScore();
-  res.sendFile("Game/highscores_page.html",{ root : __dirname+"/Public"});
+  res.sendFile("Game/HighScorePage.html",{ root : __dirname+"/Public"});
 });
 function GetHighScore(){
   const Database = require("./Server/Database.js");
