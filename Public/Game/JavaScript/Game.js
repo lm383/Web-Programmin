@@ -28,6 +28,7 @@ function SetUp(){
   let TotalPlayers = 0;
   // so we can display the players numbers
   let PlayerDis = document.getElementById("player");
+
   let Info = document.getElementById("info");
 
   let StartButt = document.getElementById("start");
@@ -68,14 +69,8 @@ function SetUp(){
     // for when a player joins
     Socket.on("PlayerJoin", function(Index, ConnN){
       TotalPlayers = ConnN;
-      alert("Player has joined")
       console.log("Player " + Index+" has joined");
       Info.innerHTML= "Users Connected "+ConnN+" out of at least 2";
-      if (TotalPlayers>= 2){
-        console.log("GAME Starting");
-        Playing = true;
-        Socket.emit("GameStart", {});
-      };
     });
     // for when a player leaves
     Socket.on("PlayerLeave", function(Index, ConnN){
@@ -96,16 +91,9 @@ function SetUp(){
       GameClose(Socket, PlayerNum);
       location.reload();
     });
-    let PlayerPos = [ , ];
-    let Playersend = PlayerNum;
-    Socket.on("GetPlayers", function(){
-      PlayerPos[0] = window.getComputedStyle(PlayerDis).getPropertyValue('top');
-      PlayerPos[1] = window.getComputedStyle(PlayerDis).getPropertyValue('left');
-      Socket.emit("RecievePlayers", PlayerSend, PlayerPos[0], PlayerPos[1] );
-    });
 
     Socket.on("AddPlayers", function(data) {
-      alert("drawing player");
+      console.log("DRAWING PLAYER");
       let OtherNum = data.UserIndex;
       let TopPos = data.TopPosition;
       let LeftPos = data.LeftPosition;
@@ -115,10 +103,22 @@ function SetUp(){
 
 
 
-
-
     // if player closes window go to GameClose function
     window.onbeforeunload = GameClose(Socket);
+  });
+  let PlayerTop = 0;
+  let PlayerLeft = 0;
+  UpdatePos();
+  Socket.on("Update", function(data){
+    TotalPlayers = data;
+    Info.innerHTML= "Users Connected "+TotalPlayers+" out of at least 2";
+    // if 2 players start the games
+    if (parseInt(TotalPlayers)>= 2){
+      console.log("GAME Starting, Emitting data");
+      console.log(PlayerTop + " "+ PlayerLeft);
+      Socket.emit("RecievePlayers", PlayerNum, PlayerTop, PlayerLeft);
+      UpdatePos();
+    };
   });
 
   //when the player leaves
@@ -138,7 +138,12 @@ function SetUp(){
   };
 };
 
-
+let PlayerDis = document.getElementById("player");
+function UpdatePos(){
+  PlayerDis = document.getElementById("player");
+  PlayerTop = PlayerDis.getBoundingClientRect().top;//window.getComputedStyle(PlayerDis).getPropertyValue('top');
+  PlayerLeft = window.getComputedStyle(PlayerDis).getPropertyValue('left');
+};
 // when an other player joins
 function DrawOtherPlayer(Index, TopPos, LeftPos){
   var OtherPlayer = document.createElement("OtherPlayer");

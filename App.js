@@ -117,19 +117,10 @@ io.sockets.on("connection", function(Socket) {
   };
   // on conncetion it will tell the client their index and people currently online
   Socket.emit("connection", PlayerIndex, ConnNum, PlayerName);
-  Socket.broadcast.send("PlayerJoin", PlayerIndex, ConnNum);
+  Socket.emit("PlayerJoin", PlayerIndex, ConnNum);
   Playername = "";
   GameSate = "Setup";
   console.log(`Player ${PlayerIndex} has connected`);
-
-  Socket.on("Update", function(data) {
-    let UserIndex = data.Playersend;
-    let Position = data.PlayerPos;
-    // here we will update the player
-    Socket.broadcast.send("Sync", {UserIndex, Position});
-    console.log(UserIndex+ " "+ Position);
-
-  });
   // when the user disconnects
   Socket.on("disconnect",()=>{
     // set PlayerIndex to -1 so it is available and -1 from ConnNum
@@ -144,15 +135,18 @@ io.sockets.on("connection", function(Socket) {
     //Tell everyone what player numbe just disconnected
     Socket.broadcast.send("PlayerLeave", {PlayerIndex, ConnNum});
   });
+  // starts interval game will update every  second
+  setInterval(function Update() {
+    Socket.broadcast.emit('Update', ConnNum);
+  }, 1000);
 
   // for when a game starts
-  Socket.on("GameStart", ()=>{
-    console.log("PlayerStart");
-    Socket.broadcast.send("GetPlayers", {});
-  });
-  Socket.on("RecivePlayers", function(Index, TopPosition, LeftPosition){
-    console.log("PlayerRecieved" + Index);
-    Socket.broadcast.send("AddPlayers", {Index, TopPosition, LeftPosition});
+  Socket.on("RecivePlayers", function(PlayerNum, Playertop, PlayerLeft){
+    console.log("PlayerRecieved" + data.Index);
+    let Index = PlayerNum;
+    let TopPosition = Playertop;
+    let LeftPosition = PlayerLeft
+    Socket.broadcast.emit("AddPlayers", Index, TopPosition, LeftPosition);
   });
 
   Socket.on('UpdateHighScore', function(Score, Name){
@@ -167,7 +161,3 @@ io.sockets.on("connection", function(Socket) {
   });
 
 });
-
-setInterval(() => {
-  io.sockets.emit('state', {});
-}, 1000 / 30);
