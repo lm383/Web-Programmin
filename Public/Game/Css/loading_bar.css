@@ -2,6 +2,7 @@ body{
 	font-family: Trebuchet MS;
 	background: url("background1.jpg");
 }
+/* css code for title */
 .neon {
   font-size: 80px;
   font-weight: 500;
@@ -28,6 +29,7 @@ body{
 	margin: 0;
 	padding: 0;
 }
+/* css code for animation */
 .waiting{
 	position: absolute;
 	top: 50%;
