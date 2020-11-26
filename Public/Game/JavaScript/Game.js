@@ -155,8 +155,9 @@ function DrawOtherPlayer(OtherNum, TopPos, LeftPos){
     var Exists = document.getElementById("OtherPlayer");
     if ( Exists != null){
       // already made a OtherPlayer
-      Exists.style.top = TopPos;
-      Exists.style.left = LeftPos;
+      console.log(OtherNum);
+      Exists.style.top = TopPos+"px";
+      Exists.style.left = LeftPos+"px";
       return;
     }
   }catch(err){
@@ -168,7 +169,8 @@ function DrawOtherPlayer(OtherNum, TopPos, LeftPos){
   OtherPlayer.id = "OtherPlayer";
   OtherPlayer.style.top = TopPos+"px";
   OtherPlayer.style.left = LeftPos+"px";
-  if (parseInt(OtherNum) !=0 ||parseInt(OtherNum) %2 ==0){
+  console.log(OtherNum);
+  if (parseInt(OtherNum) ==0 ||parseInt(OtherNum) %2 ==0){
     //red team
     OtherPlayer.style.backgroundColor = "#FF0000";
   }else{
