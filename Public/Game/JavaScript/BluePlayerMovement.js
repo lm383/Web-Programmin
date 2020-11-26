@@ -18,7 +18,7 @@ function move(e){
 		 flagCollision();
 	}
 
-//moves the square right
+//moves the square right if no collision and key pressed
 	if(e.keyCode == 39 && isCollidingRight == false){
 		left += 2;
 		player.style.left = (parseInt(left) + left) + "px";
@@ -26,7 +26,7 @@ function move(e){
 		flagCollision();
 	}
 
-//moves the square left
+//moves the square left if no collision and key pressed
 	if(e.keyCode == 37 && isCollidingLeft == false){
 		left -= 2;
 		player.style.left = (parseInt(left) + left) + "px";
@@ -34,7 +34,7 @@ function move(e){
 		flagCollision();
 	}
 
-//should move the square up, by taking away from top
+//should move the square up if no collision and key pressed
 	if(e.keyCode == 38 && isCollidingUp == false){
 		playerTop -= 4;
 		player.style.top = playerTop + "px";

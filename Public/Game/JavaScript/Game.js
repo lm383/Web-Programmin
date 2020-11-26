@@ -1,6 +1,7 @@
+// inistalise the scores
 var RedScore = 0;
 var BlueScore = 0;
-
+// these are used in the player movement javascripts
 function RedScored(){
   RedScore++;
 };
@@ -13,6 +14,7 @@ GetRed: function GetRed(){
 GetBlue: function GetBlue(){
   return BlueScore;
 };
+// for when a game ends
 function GameEnd(Socket){
   // display who won calculate highscore's reset ask for another game and take player to GameStart
   Socket.emit('disconnection', {});

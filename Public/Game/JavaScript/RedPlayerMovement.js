@@ -26,7 +26,7 @@ window.onload = function(){
 			 flagCollision();
 		}
 
-	//moves the square right
+	//moves the square right if no collision and key pressed
 		if(e.keyCode == 39 && isCollidingRight == false){
 			left += 2;
 			player.style.left = (parseInt(left) + left) + "px";
@@ -35,7 +35,7 @@ window.onload = function(){
 			flagCollision();
 		}
 
-	//moves the square left
+	//moves the square left if no collision and key pressed
 		if(e.keyCode == 37 && isCollidingLeft == false){
 			left -= 2;
 			player.style.left = (parseInt(left) + left) + "px";
@@ -51,7 +51,7 @@ window.onload = function(){
 			borderCollision();
 			wallCollision();
 			flagCollision();
-			
+
 		}
 
 	}
@@ -110,7 +110,7 @@ window.onload = function(){
 		var vWalls = document.getElementsByClassName('verticle-wall'); //gets all the elements of the class verticle-wall
 		for (var i = 0, max = vWalls.length; i < max; i++){ //repeats for all elements in vWalls
 			var wall = vWalls[i].getBoundingClientRect(); //gets the position of the current wall
-			
+
 		}
 	}
 	document.onkeydown = move;
