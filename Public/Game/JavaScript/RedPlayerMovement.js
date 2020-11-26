@@ -11,7 +11,7 @@ window.onload = function(){
 	var Blue = GetBlue();
 	// display them
 	var ScoreDis = document.getElementById("Score");
-	ScoreDis.innerHTML = Red+" : " +Blue;
+	ScoreDis.innerHTML = "Score "+ Red+" : " +Blue;
 
 	//ScoreDis.innerHTML = "Red "+ GetRed()+" : Blue" GetBlue();
 
@@ -95,7 +95,7 @@ window.onload = function(){
 				Red = GetRed();
 				Blue = GetBlue();
 				// display the scores
-				ScoreDis.innerHTML = Red+" : " +Blue;// this returns the socore of red team
+				ScoreDis.innerHTML ="Score "+ Red+" : " +Blue;// this returns the socore of red team
 		};
 
 	};
