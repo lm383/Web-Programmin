@@ -3,7 +3,7 @@ var progress = document.querySelector('.progress');
 var text = document.querySelector('.text');
 var count = 4;
 var per = 16;
-//code to make sure that the animation percentage increases incrementally
+// code to make sure that the animation percentage increases incrementally
 var waiting = setInterval(animate, 50);
 function animate(){
 	if(count == 100 && per == 400){
