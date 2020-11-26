@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+	font-family: "Courier New", courier, monospace;
+}
+.neon {
+  font-size: 80px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-align: center;
+  position: absolute;
+  margin-top: -800px;
+  margin-left: 600px;
+  -webkit-animation: neon 1s ease-in-out infinite alternate;
+  -moz-animation: neon 1s ease-in-out infinite alternate;
+  animation: neon 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #C0C0C0, 0 0 40px #C0C0C0, 0 0 50px #C0C0C0, 0 0 60px #C0C0C0, 0 0 70px #C0C0C0;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #F5F5F5, 0 0 40px #F5F5F5, 0 0 50px #F5F5F5, 0 0 60px #F5F5F5, 0 0 70px #F5F5F5, 0 0 80px #F5F5F5;
+  }
+
+}
+</style>
+<body>
+<head>
+	<title> test</title>
+	<!--link to the css page so it all our pages look the same  -->
+	<link rel="stylesheet" href='../Css/Styles.css'>
+	<link rel="stylesheet" href='../Css/GameMap.css'>
+
+<style>
+
+canvas {
+  margin: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 250px;
+  background-color: #000000;
+  border: 1px solid black;
+  opacity: 0.6;
+  width: 1200px;
+  height: 650px;
+}
+</style>
+</head>
+<body onload = "startGame()">
+    <h1 class="neon">PLAY</h1>
+<script>
+
+var myGamePiece;
+var myObstacle;
+
+function startGame() {
+
+    myGamePiece = new component(30, 30, "red", 10, 120);
+    myObstacle  = new component(5,250, "white", 250, 120);    
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+
+    },
+        clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }    
+}
+
+function updateGameArea() {
+    myGameArea.clear();
+    myObstacle.update();
+    myGamePiece.newPos();    
+    myGamePiece.update();
+}
+
+</script>
+</div>
+</body>
+</html>
+
