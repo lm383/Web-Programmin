@@ -1,41 +1,18 @@
-// this will initailise the game
-function GameStart(PlayerNum){
-  // will need to set timer set points to 0 on both sides and have players on a side, spwan on that sides
-  // etc etc
-  // then if PlayerIndex is even blue team else red team
-  let team = null;
-  if (PlayerNum == 0 || PlayerNum/2){
-    // if 0 / even red team
-    team = "#FF0000";
-  }else{
-    // else blue
-    team = "#0000FF";
-  };
+var RedScore = 0;
+var BlueScore = 0;
 
-  return team;
+function RedScored(){
+  RedScore++;
 };
-
-function Play(Socket){
-  // this will be where everything happens update to players screens timer tickes,
-  // if player collides with others/Flag
-  // if timer is up go to GameEnd
-  // timestamp from server
-  var servertimestamp = 0;
-  /*
-	sending data to the server
-  e.g. player timestamp (catches delays)
-  their index, their position
-	*/
-    Socket.emit("update", {
-      cmd: "update",
-      timestamp: servertimestamp,
-      PlayerIndex: PlayerIndex,
-      x: xx,
-      y: yy,
-    });
+function BlueScored(){
+  BlueScore++;
 };
-
-
+GetRed: function GetRed(){
+  return RedScore;
+};
+GetBlue: function GetBlue(){
+  return BlueScore;
+};
 function GameEnd(Socket){
   // display who won calculate highscore's reset ask for another game and take player to GameStart
   Socket.emit('disconnection', {});
@@ -46,6 +23,7 @@ function SetUp(){
   // first It will need to check how many players are trying to play currently
   // initialse PlayerNum and PointScored and Info
   let PlayerNum = 0;
+  let Username = "";
   let PointScored = 0;
   let TotalPlayers = 0;
   // so we can display the players numbers
@@ -66,82 +44,144 @@ function SetUp(){
   };
 
   // now we find out the real playerIndex given by server
-  Socket.on("connection", function(num, numb){
+  Socket.on("connection", function(num, numb, name){
     if (num == -1){
       // this means server is full max 6 players
-      alert("currently full try again later")
+      location.reload();
+      alert("currently full try again later");
     }else{
       // parse int cus socket io gives string
+      Username = name;
       PlayerNum = parseInt(num);
-      PlayerDis.innerHTML = num;
+      if (Username === ""){
+        PlayerDis.innerHTML = num;
+      }else{
+        PlayerDis.innerHTML = Username;
+      };
     };
     TotalPlayers = numb;
     Info.innerHTML= "Users Connected "+numb+" out of at least 2";
     // now we initialse teams
-    let Team = null;
-    if (PlayerNum == 0 || PlayerNum%2 == 0){
-      // if 0 / even red team
-      Team = "#FF0000";
-    }else{
-      // else blue
-      Team = "#0000FF";
-    };
-    // put make sure player is their colour
-    PlayerDis.style.backgroundColor = Team;
-    if (Team === "#0000FF"){
-      // if player is blue put them on their side
-      PlayerDis.style.left = "95%";
-    };
+    let Team = GetTeam(PlayerNum, PlayerDis);
+    // for when game is able to take place e.g there are more than 2 players
+    let Playing = false;
+    // for when a player joins
+    Socket.on("PlayerJoin", function(Index, ConnN){
+      TotalPlayers = ConnN;
+      alert("Player has joined")
+      console.log("Player " + Index+" has joined");
+      Info.innerHTML= "Users Connected "+ConnN+" out of at least 2";
+      if (TotalPlayers>= 2){
+        console.log("GAME Starting");
+        Playing = true;
+        Socket.emit("GameStart", {});
+      };
+    });
+    // for when a player leaves
+    Socket.on("PlayerLeave", function(Index, ConnN){
+      TotalPlayers = ConnN;
+      console.log("Player " + Index+" has left");
+      Info.innerHTML= "Users Connected "+ConnN+" out of at least 2";
+      if (TotalPlayers< 2){
+        console.log("GAME End not enough players");
+        Playing = false;
+      };
+    });
+
+    // this will show other players and positions
+    EndButt.addEventListener("click", function(){
+      Playing = false;
+      StartButt.style.display = "block";
+      EndButt.style.display = "none";
+      GameClose(Socket, PlayerNum);
+      location.reload();
+    });
+    let PlayerPos = [ , ];
+    let Playersend = PlayerNum;
+    Socket.on("GetPlayers", function(){
+      PlayerPos[0] = window.getComputedStyle(PlayerDis).getPropertyValue('top');
+      PlayerPos[1] = window.getComputedStyle(PlayerDis).getPropertyValue('left');
+      Socket.emit("RecievePlayers", PlayerSend, PlayerPos[0], PlayerPos[1] );
+    });
+
+    Socket.on("AddPlayers", function(data) {
+      alert("drawing player");
+      let OtherNum = data.UserIndex;
+      let TopPos = data.TopPosition;
+      let LeftPos = data.LeftPosition;
+      alert(OtherNum + " Pos: "+ OtherPos);
+      DrawOtherPlayer(OtherNum, TopPos, LeftPos);
+    });
+
+
+
+
+
     // if player closes window go to GameClose function
     window.onbeforeunload = GameClose(Socket);
   });
 
-  function GameClose(Socket){
+  //when the player leaves
+  function GameClose(Socket, PlayerNum){
+    if (PlayerNum == 0 || PlayerNum%2 == 0){
+      // if 0 / even red team
+      PointScored = GetRed();
+    }else{
+      // else blue
+      PointScored = GetBlue();
+    };
+    if(PointScored > 0&&!(Username==="")){
+      Socket.emit('UpdateHighScore', PointScored, Username);
+    };
     // when window is closed disconnect player
     Socket.emit('disconnection', function() {});
   };
-  // this will show other players and positions
-  let Playing = false;
-  if (TotalPlayers> 2){
-    console.log("GAME Starting");
-    Playing = true;
+};
+
+
+// when an other player joins
+function DrawOtherPlayer(Index, TopPos, LeftPos){
+  var OtherPlayer = document.createElement("OtherPlayer");
+  // make other player
+  OtherPlayer.style.height = "10vh";
+  OtherPlayer.style.width = "5%";
+  OtherPlayer.style.outline = "1px solid black";
+  OtherPlayer.style.position = "relative";
+  OtherPlayer.style.top = TopPos+"px";
+  OtherPlayer.style.left = LeftPos+"px";
+  if (OtherNum !=0 || OtherNum%2 ==0){
+    OtherPlayer.style.backgroundColor = "#FF0000";
+  }else{
+    OtherPlayer.style.backgroundColor = "#0000FF";
+  }
+  OtherPlayer.style.textAlign = "center";
+  // adds the player to user screen
+  document.body.appendChild(OtherPlayer);
+
+};
+
+function GetTeam(Num, PlayerDis){
+  if (Num == 0 || Num%2 == 0){
+    // if 0 / even red team
+    Team = "#FF0000";
+  }else{
+    // else blue
+    Team = "#0000FF";
   };
-  EndButt.addEventListener("click", function(){
-    Playing = false;
-    StartButt.style.display = "block";
-    EndButt.style.display = "none";
-    GameClose(Socket);
-    location.reload();
-  });
-  let PlayerPos = [ , ];
-  let Playersend = PlayerNum.innerHTML;
-  while (Playing){
-    console.log("GAME Start");
-    PlayerPos[0] = window.getComputedStyle(PlayerDis).getPropertyValue('top');
-    PlayerPos[1] = window.getComputedStyle(PlayerDis).getPropertyValue('left');
-    Socket.emit("Update",{ Playersend, PlayerPos});
-    Socket.on("Sync", function(data) {
-      let OtherNum = data.UserIndex;
-      let OtherPos = data.Position;
-      alert(OtherNum + " Pos: "+ OtherPos);
-      var OtherPlayer = document.createElement("OtherPlayer");
-      // make other player
-      OtherPlayer.style.height = "10vh";
-      OtherPlayer.style.width = "5%";
-      OtherPlayer.style.outline = "1px solid black";
-      OtherPlayer.style.position = "relative";
-      if (OtherNum !=0 || OtherNum%2 ==0){
-        OtherPlayer.style.backgroundColor = "#FF0000";
-      }else{
-        OtherPlayer.style.backgroundColor = "#0000FF";
-      }
-      OtherPlayer.style.textAlign = "center";
-      // adds the player to user screen
-      document.body.appendChild(OtherPlayer);
-    });
-
-
+  // put make sure player is their colour
+  PlayerDis.style.backgroundColor = Team;
+  if (Team === "#0000FF"){
+    // if player is blue put them on their side
+    PlayerDis.style.left = "80%";
+    console.log("Blue");
+    // make the new link to movement script when on the blue team
+    var NewScript = document.createElement('script');
+    NewScript.setAttribute("type","text/javascript");
+    NewScript.setAttribute('src', 'JavaScript/BluePlayerMovement.js');
+    // add it to head
+    document.head.appendChild(NewScript);
+    // now to delete the old one
+    document.head.removeChild(document.getElementById("Red"));
   };
-
-
+  return Team;
 };

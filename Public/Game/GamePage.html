@@ -8,8 +8,8 @@
 	<!-- links to the css page to create the game map-->
 	<link rel="stylesheet" href='Css/GameMap.css'>
 	<!-- the JavaScript -->
-	<script id = "RED" src="JavaScript/RedPlayerMovement.js"></script>
-	<script src="JavaScript/Game.js"></script>
+	<script id = "Red" src="JavaScript/RedPlayerMovement.js"></script>
+	<script id="Main"src="JavaScript/Game.js"></script>
 	<!--this is to help socket.io stuff-->
 	<script src="../socket.io/socket.io.js"></script>
 
@@ -33,6 +33,16 @@
 			background-color: blue;
 			text-align: center;
 		}
+		#flagRed{
+			height: 8vh;
+			width: 2%;
+			outline: 1px solid black;
+			position: absolute;
+			top: 55%;
+			left: 5%;
+			background-color: red;
+			text-align: center;
+		}
 	</style>
 </head>
 
@@ -42,6 +52,9 @@
 	<div class="verticle-wall"></div>
 	<div id="player"></div>
 	<div id ="flagBlue">
+		<p>Flag</p>
+	</div>
+	<div id ="flagRed">
 		<p>Flag</p>
 	</div>
 
