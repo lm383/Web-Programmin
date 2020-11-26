@@ -1,3 +1,4 @@
+/* code for an interactive button */
 div.hidden {
   display: none;
 }
@@ -24,6 +25,7 @@ button_cont {
    cursor: pointer;
    margin: 5px;
  }
+/* code for the transition of the button */
  .button_cont span {
    cursor: pointer;
    display: inline-block;
