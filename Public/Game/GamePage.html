@@ -22,6 +22,17 @@
 		background-color : #FF0000;
 		text-align: center;
 		}
+
+		#flag{
+			height: 8vh;
+			width: 2%;
+			outline: 1px solid black;
+			position: absolute;
+			top: 5%;
+			left: 85%;
+			background-color: blue;
+			text-align: center;
+		}
 	</style>
 </head>
 
@@ -30,9 +41,12 @@
 	<div class="dashed-lines"></div>
 	<div class="verticle-wall"></div>
 	<div id="player"></div>
+	<div id ="flag">
+		<p>Flag</p>
+	</div>
 
 
-
+	 	
 		<!-- the button to start game -->
 		<button id="start" href="GamePage"  onmousedown="SetUp();return false;">
 		Start game
