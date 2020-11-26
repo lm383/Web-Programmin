@@ -1,3 +1,4 @@
+/* code for the start button on the index page */
 .start_button{
 position: absolute;
 left: 640px;  
@@ -15,6 +16,7 @@ border-radius: 6px;
 display: inline-block;
 transition: all 0.3s ease 0s;
 }
+/* changes the colour and the shape of the border on hover */
 .start_button:hover {
 color: #F8F8FF !important;
 border-radius: 50px;
