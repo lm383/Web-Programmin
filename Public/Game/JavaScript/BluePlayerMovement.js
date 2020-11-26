@@ -1,6 +1,7 @@
-var p = document.getElementById("player");
 
-var left = 0;
+var p = document.getElementById("player");
+alert("AAAHH");
+var left = 600;
 var playerTop = 0;
 var isCollidingRight = false; //insitialises the booleans
 var isCollidingLeft = false;
@@ -9,9 +10,9 @@ var isCollidingUp = false;
 var redScore = 0;
 
 function move(e){
-	
+
 //should move the square down, by adding to top
- 	if(e.keyCode == 40 && isCollidingDown == false){ //if this button is pressed and player is not colliding 
+ 	if(e.keyCode == 40 && isCollidingDown == false){ //if this button is pressed and player is not colliding
 		 playerTop += 4;
 		 player.style.top = playerTop + "px";
 		 borderCollision(); //calls the collision method in the if statements to update the booleans for the next button press
@@ -41,14 +42,14 @@ function move(e){
 		borderCollision();
 		flagCollision();
 	}
-	
+
 }
 
 //currently detects whether the player is colliding with the edge of the window
 function borderCollision(){
 	//if it is at that location then it sets the boolean to true so that it cannot move in that direction
 	if (player.offsetLeft - 4 > window.innerWidth - 8){ //will be modified later for walls
-		isCollidingRight = true; 
+		isCollidingRight = true;
 	}
 	else{
 		isCollidingRight = false;
@@ -74,16 +75,16 @@ function borderCollision(){
 }
 //function checks if the player is touching the flag
 function flagCollision(){
-	var playerPos = player.getBoundingClientRect(); //creates a local variable with the position information of the player
-	var flagPos = flag.getBoundingClientRect();
-	if(!(playerPos.right < flagPos.left || playerPos.left > flagPos.right || //checks if the player is intersecting with the flag
-		playerPos.bottom < flagPos.top || playerPos.top > flagPos.bottom)){ 
-			redScore++; //increments the score
-			player.style.left = 0 + "px"; //resets the players position
-			player.style.top = 15 + "px";
-	}
-
-}
+  var playerPos = player.getBoundingClientRect(); //creates a local variable with the position information of the player
+  var flagPos = flagRed.getBoundingClientRect();
+  if(!(playerPos.right < flagPos.left || playerPos.left > flagPos.right || //checks if the player is intersecting with the flag
+    playerPos.bottom < flagPos.top || playerPos.top > flagPos.bottom)){
+      BlueScored(); //increments the score
+      player.style.left = 600 + "px"; //resets the players position
+      player.style.top = 15 + "px";
+      left = 600;
+      top = 15;
+      GetBlue();// this will return the current score of blue team
+  };
+};
 document.onkeydown = move;
-
-
