@@ -22,6 +22,7 @@ window.onload = function(){
 			 playerTop += 4;
 			 player.style.top = playerTop + "px";
 			 borderCollision(); //calls the collision method in the if statements to update the booleans for the next button press
+			 wallCollision();
 			 flagCollision();
 		}
 
@@ -30,6 +31,7 @@ window.onload = function(){
 			left += 2;
 			player.style.left = (parseInt(left) + left) + "px";
 			borderCollision();
+			wallCollision();
 			flagCollision();
 		}
 
@@ -38,6 +40,7 @@ window.onload = function(){
 			left -= 2;
 			player.style.left = (parseInt(left) + left) + "px";
 			borderCollision();
+			wallCollision();
 			flagCollision();
 		}
 
@@ -46,7 +49,9 @@ window.onload = function(){
 			playerTop -= 4;
 			player.style.top = playerTop + "px";
 			borderCollision();
+			wallCollision();
 			flagCollision();
+			
 		}
 
 	}
@@ -99,6 +104,15 @@ window.onload = function(){
 		};
 
 	};
+
+	function wallCollision(){
+		var playerPos = player.getBoundingClientRect(); //initialises the variables for the position
+		var vWalls = document.getElementsByClassName('verticle-wall'); //gets all the elements of the class verticle-wall
+		for (var i = 0, max = vWalls.length; i < max; i++){ //repeats for all elements in vWalls
+			var wall = vWalls[i].getBoundingClientRect(); //gets the position of the current wall
+			
+		}
+	}
 	document.onkeydown = move;
 
 };
