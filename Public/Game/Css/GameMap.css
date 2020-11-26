@@ -1,3 +1,53 @@
+body{
+  background-image:url("../Image/background1.jpg");
+}
+
+/
+#player{
+height: 10vh; /*does 10% of the viewport height */
+width : 5%; /*does 5% */
+outline: 1px solid black;
+position : relative;
+background-color : #FF0000;
+text-align: center;
+}
+.OtherPlayer{
+  height: 10vh; /*does 10% of the viewport height */
+  width : 5%; /*does 5% */
+  outline: 1px solid black;
+  position : relative;
+}
+
+#flagBlue{
+  height: 8vh;
+  width: 3%;
+  outline: 1px solid black;
+  position: absolute;
+  top: 5%;
+  left: 85%;
+
+  text-align: center;
+}
+#flagRed{
+  height: 8vh;
+  width: 3%;
+  outline: 1px solid black;
+  position: absolute;
+  top: 75%;
+  left: 5%;
+  text-align: center;
+}
+img{
+  height:10vh;
+  width:100%;
+}
+#Score{
+  position: absolute;
+  opacity: 0.5;
+  z-index: 5;
+  top:90%;
+
+}
 /*
 this will be for the borders so players cant go off screen and any walls in the map
 so we can display it and add collision code
@@ -22,10 +72,26 @@ Border{
 .verticle-wall {
   border-left: 3px solid white;
   position:absolute;
-  
+
 }
 
 .horizontal-wall {
   border-top: 3px solid white;
   position:absolute;
+}
+
+#start{
+  position: absolute;
+  top: 0%;
+  left: 50%;
+}
+#stop {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+}
+#highscore{
+  position: absolute;
+  top: 90%;
+  left: 50%;
 }

@@ -12,54 +12,6 @@
 	<script id="Main"src="JavaScript/Game.js"></script>
 	<!--this is to help socket.io stuff-->
 	<script src="../socket.io/socket.io.js"></script>
-
-	<style>
-		#player{
-		height: 10vh; /*does 10% of the viewport height */
-		width : 5%; /*does 5% */
-		outline: 1px solid black;
-		position : relative;
-		background-color : #FF0000;
-		text-align: center;
-		}
-		.OtherPlayer{
-			height: 10vh; /*does 10% of the viewport height */
-			width : 5%; /*does 5% */
-			outline: 1px solid black;
-			position : relative;
-		}
-
-		#flagBlue{
-			height: 8vh;
-			width: 3%;
-			outline: 1px solid black;
-			position: absolute;
-			top: 5%;
-			left: 85%;
-
-			text-align: center;
-		}
-		#flagRed{
-			height: 8vh;
-			width: 3%;
-			outline: 1px solid black;
-			position: absolute;
-			top: 75%;
-			left: 5%;
-			text-align: center;
-		}
-		img{
-			height:10vh;
-			width:100%;
-		}
-		#Score{
-			position: absolute;
-			opacity: 0.5;
-			z-index: 5;
-			top:90%;
-
-		}
-	</style>
 </head>
 
 <body>
@@ -85,6 +37,11 @@
 		<!-- onclick event listener in Game.js is activated -->
 		<button id="stop" href="GamePage" style="display:none;" >
 		Stop game
+		</button>
+		<button id="highscore" href="highscores_page" >
+			<a href="./highscores_page">
+				highscore
+			</a>
 		</button>
 		<center><h5 id = "Score" ></h5></center>
 

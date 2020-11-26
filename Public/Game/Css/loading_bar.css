@@ -1,0 +1,81 @@
+body{
+	font-family: Trebuchet MS;
+	background: url("background1.jpg");
+}
+.neon {
+  font-size: 80px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-align: center;
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 575px;
+  -webkit-animation: neon 1s ease-in-out infinite alternate;
+  -moz-animation: neon 1s ease-in-out infinite alternate;
+  animation: neon 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #C0C0C0, 0 0 40px #C0C0C0, 0 0 50px #C0C0C0, 0 0 60px #C0C0C0, 0 0 70px #C0C0C0;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #F5F5F5, 0 0 40px #F5F5F5, 0 0 50px #F5F5F5, 0 0 60px #F5F5F5, 0 0 70px #F5F5F5, 0 0 80px #F5F5F5;
+  }
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+.waiting{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.percent{
+	color: #F8F8FF;
+	font-size: 100px;
+	font-weight: 400;
+	text-align: center;
+	margin-bottom: 15px;
+
+}
+.text{
+	position: absolute;
+	left: 160px;
+	color: #FFFFFF;
+	font-size: 15px;
+	letter-spacing: 1px;
+	line-height: 21px;
+	display: none;
+}
+.text-animation{
+	animation: blink.7s ease-in-out.1s;
+}
+@keyframes text-animation{
+	0%{
+		opacity: 1;
+	}
+	50%{
+		opacity: .2;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+.progress-bar{
+	width: 405px;
+	height: 21px;
+	background: #111;
+	border-radius: 13px;
+	padding: 3px;
+	box-sizing: border-box;
+}
+.progress{
+	width: 200px;
+	height: 15px;
+	background: #DC143C;
+	border-radius: 13px;
+}

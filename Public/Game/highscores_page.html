@@ -2,33 +2,10 @@
 <html>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  background: url("background1.jpg");
-  font-family: "Courier New", courier, monospace;
-}
-
-.neon {
-  font-size: 80px;
-  font-weight: 500;
-  color: #FFD700;
-  text-align: center;
-  -webkit-animation: neon 1s ease-in-out infinite alternate;
-  -moz-animation: neon 1s ease-in-out infinite alternate;
-  animation: neon 1s ease-in-out infinite alternate;
-}
-
-@-webkit-keyframes neon{
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #FFFFF0, 0 0 40px #FFFFF0, 0 0 50px #FFFFF0, 0 0 60px #FFFFF0, 0 0 70px #FFFFF0;
-  }
-  
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #FFFACD, 0 0 40px #FFFACD, 0 0 50px #FFFACD, 0 0 60px #FFFACD, 0 0 70px #FFFACD, 0 0 80px #FFFACD;
-  }
-}
-</style>
 </head>
+<link rel="stylesheet" href='../Css/Styles.css'>
+<link rel="stylesheet" href='./Css/GameMap.css'>
+<link rel="stylesheet" href="../Css/loading_bar.css">
 <body>
 
 <h1 class="neon">YOUR HIGHSCORES</h1>
@@ -62,18 +39,29 @@ div.transbox p {
 	float: left;
 	margin:10px;
 
-} 
+}
 
 </style>
 
 <div class="background">
   <div class="transbox">
-  	<img src="goldcrown.jpg" class="TextWrap" width="100" height="100"><p style="position:relative; left:40px top:50px">1.</p>><br>
-  	<img src="silvercrown.jpg" class="TextWrap" width="100" height="100"><p>2.</p><br>
-  	<img src="coppercrown.jpg" class="TextWrap" width="100" hieght="100"><p>3.</p>
+  	<img src="./Image/goldcrown.jpg" class="TextWrap" width="100" height="100">
+    <p style="position:relative; left:40px top:50px">
+      1.
+    </p>
+    <br>
+  	<img src="./Image/silvercrown.jpg" class="TextWrap" width="100" height="100">
+    <p>
+      2.
+    </p>
+    <br>
+  	<img src="./Image/coppercrown.jpg" class="TextWrap" width="100" hieght="100">
+    <p>
+      3.
+    </p>
   </div>
 </div>
 
-     
+
 </body>
-</html> 
+</html>
