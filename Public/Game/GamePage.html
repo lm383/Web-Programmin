@@ -31,23 +31,26 @@
 
 		#flagBlue{
 			height: 8vh;
-			width: 2%;
+			width: 3%;
 			outline: 1px solid black;
 			position: absolute;
 			top: 5%;
 			left: 85%;
-			background-color: blue;
+
 			text-align: center;
 		}
 		#flagRed{
 			height: 8vh;
-			width: 2%;
+			width: 3%;
 			outline: 1px solid black;
 			position: absolute;
 			top: 55%;
 			left: 5%;
-			background-color: red;
 			text-align: center;
+		}
+		img{
+			height:10vh;
+			width:100%;
 		}
 	</style>
 </head>
@@ -58,10 +61,10 @@
 	<div class="verticle-wall"></div>
 	<div id="player"></div>
 	<div id ="flagBlue">
-		<p>Flag</p>
+		<img src="./Image/Blueflag.png"></img>
 	</div>
 	<div id ="flagRed">
-		<p>Flag</p>
+		<img src="./Image/Redflag.png"></img>
 	</div>
 
 
@@ -74,6 +77,7 @@
 		<button id="stop" href="GamePage" style="display:none;" >
 		Stop game
 		</button>
+		<h5 id = "Score" style = "opacity: 0.2;z-index: 5;"></h5>
 
 
 </body>
