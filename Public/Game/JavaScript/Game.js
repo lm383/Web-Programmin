@@ -120,6 +120,11 @@ function SetUp(){
       UpdatePos();
     };
   });
+  function UpdatePos(){
+    PlayerDis = document.getElementById("player");
+    PlayerTop = PlayerDis.getAttribute("top");//window.getComputedStyle(PlayerDis).getPropertyValue('top');
+    PlayerLeft = PlayerDis.offsetLeft;//window.getComputedStyle(PlayerDis).getPropertyValue('left');
+  };
 
   //when the player leaves
   function GameClose(Socket, PlayerNum){
@@ -138,12 +143,7 @@ function SetUp(){
   };
 };
 
-let PlayerDis = document.getElementById("player");
-function UpdatePos(){
-  PlayerDis = document.getElementById("player");
-  PlayerTop = PlayerDis.getBoundingClientRect().top;//window.getComputedStyle(PlayerDis).getPropertyValue('top');
-  PlayerLeft = window.getComputedStyle(PlayerDis).getPropertyValue('left');
-};
+
 // when an other player joins
 function DrawOtherPlayer(Index, TopPos, LeftPos){
   var OtherPlayer = document.createElement("OtherPlayer");
