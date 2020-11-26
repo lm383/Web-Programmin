@@ -2,7 +2,6 @@ body{
   background-image:url("../Image/background1.jpg");
 }
 
-/
 #player{
 height: 10vh; /*does 10% of the viewport height */
 width : 5%; /*does 5% */
