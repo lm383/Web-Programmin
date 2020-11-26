@@ -13,8 +13,8 @@ function HideShowSign() {
   } else {
     SignForm.style.display = "none";
     Button.style.display = "Block";
-  }
-}
+  };
+};
 function HideShowLog() {
   // here we will hide the LogIn form
   var SignForm = document.getElementById("LogIn");
@@ -26,8 +26,8 @@ function HideShowLog() {
   } else {
     SignForm.style.display = "none";
     Button.style.display = "Block";
-  }
-}
+  };
+};
 
 function ValSignUp() {
   // this is where all the signup forms validation will go
@@ -40,5 +40,15 @@ function ValSignUp() {
   } else {
     alert("Passwords Different")
     return false;
-  }
-}
+  };
+};
+function ValLogIn() {
+  let Username = document.forms["LogInForm"]["UsernameL"].value;
+  let Password = document.forms["LogInForm"]["PasswordL"].value;
+
+  if(Username.length<=20&&Password.length<=20){
+    return true;
+  }else{
+    return false;
+  };
+};
