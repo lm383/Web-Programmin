@@ -6,7 +6,14 @@ window.onload = function(){
 	var isCollidingLeft = false;
 	var isCollidingDown = false;
 	var isCollidingUp = false;
-	var redScore = 0;
+	// get scores (should be 0 at first)
+	var Red = GetRed();
+	var Blue = GetBlue();
+	// display them
+	var ScoreDis = document.getElementById("Score");
+	ScoreDis.innerHTML = Red+" : " +Blue;
+
+	//ScoreDis.innerHTML = "Red "+ GetRed()+" : Blue" GetBlue();
 
 	function move(e){
 
@@ -84,7 +91,11 @@ window.onload = function(){
 				player.style.top = 15 + "px";
 				left = 0;
 				top = 15;
-				GetRed();// this returns the socore of red team
+				// get the most recent scores
+				Red = GetRed();
+				Blue = GetBlue();
+				// display the scores
+				ScoreDis.innerHTML = Red+" : " +Blue;// this returns the socore of red team
 		};
 
 	};
