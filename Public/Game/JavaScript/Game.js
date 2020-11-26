@@ -172,8 +172,7 @@ function GetTeam(Num, PlayerDis){
   PlayerDis.style.backgroundColor = Team;
   if (Team === "#0000FF"){
     // if player is blue put them on their side
-    PlayerDis.style.left = "80%";
-    console.log("Blue");
+    PlayerDis.style.left = "75%";
     // make the new link to movement script when on the blue team
     var NewScript = document.createElement('script');
     NewScript.setAttribute("type","text/javascript");

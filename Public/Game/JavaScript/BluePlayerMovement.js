@@ -1,7 +1,6 @@
 
 var p = document.getElementById("player");
-alert("AAAHH");
-var left = 600;
+var left = 700;
 var playerTop = 0;
 var isCollidingRight = false; //insitialises the booleans
 var isCollidingLeft = false;
@@ -80,9 +79,9 @@ function flagCollision(){
   if(!(playerPos.right < flagPos.left || playerPos.left > flagPos.right || //checks if the player is intersecting with the flag
     playerPos.bottom < flagPos.top || playerPos.top > flagPos.bottom)){
       BlueScored(); //increments the score
-      player.style.left = 600 + "px"; //resets the players position
+      player.style.left = 700 + "px"; //resets the players position
       player.style.top = 15 + "px";
-      left = 600;
+      left = 700;
       top = 15;
       GetBlue();// this will return the current score of blue team
   };
