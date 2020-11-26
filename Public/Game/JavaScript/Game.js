@@ -17,7 +17,6 @@ function GameEnd(Socket){
   // display who won calculate highscore's reset ask for another game and take player to GameStart
   Socket.emit('disconnection', {});
 };
-
 function SetUp(){
   // we need to connect with the server to do this
   // first It will need to check how many players are trying to play currently
@@ -28,7 +27,8 @@ function SetUp(){
   let TotalPlayers = 0;
   // so we can display the players numbers
   let PlayerDis = document.getElementById("player");
-
+  let PlayerTop = 0;
+  let PlayerLeft = 0;
   let Info = document.getElementById("info");
 
   let StartButt = document.getElementById("start");
@@ -106,8 +106,7 @@ function SetUp(){
     // if player closes window go to GameClose function
     window.onbeforeunload = GameClose(Socket);
   });
-  let PlayerTop = 0;
-  let PlayerLeft = 0;
+
   UpdatePos();
   Socket.on("Update", function(data){
     TotalPlayers = data;
@@ -124,6 +123,12 @@ function SetUp(){
     PlayerDis = document.getElementById("player");
     PlayerTop = PlayerDis.getAttribute("top");//window.getComputedStyle(PlayerDis).getPropertyValue('top');
     PlayerLeft = PlayerDis.offsetLeft;//window.getComputedStyle(PlayerDis).getPropertyValue('left');
+    if(PlayerTop == null){
+      PlayerTop = PlayerDis.offsetTop;
+    };
+    if(PlayerTop == null){
+      PlayerTop = window.getComputedStyle(PlayerDis).getPropertyValue('top');
+    };
   };
 
   //when the player leaves
