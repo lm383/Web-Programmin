@@ -116,8 +116,9 @@ window.onload = function(){
 			// 	window.alert("Collide");
 			// }
 		}
-		for (var j = 0, max = hWalls.length; i < max; i++){
+		for (var j = 0, max = hWalls.length; j < max; j++){
 			var wall = hWalls[i].getBoundingClientRect();
+
 		}
 	}
 	document.onkeydown = move;
