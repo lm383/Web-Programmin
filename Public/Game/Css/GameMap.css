@@ -21,8 +21,11 @@ Border{
 
 .verticle-wall {
   border-left: 3px solid white;
-  height: 10vh;
   position:absolute;
-  left: 15%;
-  top: 75px;
+  
+}
+
+.horizontal-wall {
+  border-top: 3px solid white;
+  position:absolute;
 }
