@@ -141,8 +141,8 @@ io.sockets.on("connection", function(Socket) {
   }, 1000);
 
   // for when a game starts
-  Socket.on("RecivePlayers", function(PlayerNum, Playertop, PlayerLeft){
-    console.log("PlayerRecieved" + data.Index);
+  Socket.on("RecievePlayers", function(PlayerNum, Playertop, PlayerLeft){
+    console.log("PlayerRecieved" + PlayerNum);
     let Index = PlayerNum;
     let TopPosition = Playertop;
     let LeftPosition = PlayerLeft

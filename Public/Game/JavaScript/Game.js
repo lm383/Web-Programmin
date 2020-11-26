@@ -92,12 +92,12 @@ function SetUp(){
       location.reload();
     });
 
-    Socket.on("AddPlayers", function(data) {
+    Socket.on("AddPlayers", function(UserIndex, TopPosition, LeftPosition) {
       console.log("DRAWING PLAYER");
-      let OtherNum = data.UserIndex;
-      let TopPos = data.TopPosition;
-      let LeftPos = data.LeftPosition;
-      alert(OtherNum + " Pos: "+ OtherPos);
+      let OtherNum = UserIndex;
+      let TopPos = TopPosition;
+      let LeftPos = LeftPosition;
+      console.log(OtherNum + " Pos: "+ TopPos + " "+ LeftPos);
       DrawOtherPlayer(OtherNum, TopPos, LeftPos);
     });
 
@@ -113,8 +113,8 @@ function SetUp(){
     Info.innerHTML= "Users Connected "+TotalPlayers+" out of at least 2";
     // if 2 players start the games
     if (parseInt(TotalPlayers)>= 2){
-      console.log("GAME Starting, Emitting data");
-      console.log(PlayerTop + " "+ PlayerLeft);
+      console.log(" Emitting data");
+      //console.log(PlayerTop + " "+ PlayerLeft);
       Socket.emit("RecievePlayers", PlayerNum, PlayerTop, PlayerLeft);
       UpdatePos();
     };
@@ -150,7 +150,7 @@ function SetUp(){
 
 
 // when an other player joins
-function DrawOtherPlayer(Index, TopPos, LeftPos){
+function DrawOtherPlayer(OtherNum, TopPos, LeftPos){
   var OtherPlayer = document.createElement("OtherPlayer");
   // make other player
   OtherPlayer.style.height = "10vh";
