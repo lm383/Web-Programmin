@@ -2,6 +2,7 @@ body{
   background-image:url("../Image/background1.jpg");
 }
 
+/* player css */
 #player{
 height: 10vh; /*does 10% of the viewport height */
 width : 5%; /*does 5% */
@@ -10,13 +11,14 @@ position : relative;
 background-color : #FF0000;
 text-align: center;
 }
+/* other players that connect (used in game.js) */
 .OtherPlayer{
   height: 10vh; /*does 10% of the viewport height */
   width : 5%; /*does 5% */
   outline: 1px solid black;
   position : relative;
 }
-
+/* the flags*/
 #flagBlue{
   height: 8vh;
   width: 3%;
@@ -36,10 +38,12 @@ text-align: center;
   left: 5%;
   text-align: center;
 }
+/* the flag images used in GamePage.html*/
 img{
   height:10vh;
   width:100%;
 }
+/* the score used in GamePage.html found in the bottom left of screen*/
 #Score{
   position: absolute;
   opacity: 0.7;
