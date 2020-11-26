@@ -45,7 +45,14 @@ App.get("/Game/GamePage", function(req,res){
 App.get("/Game/loading_bar", function(req,res){
   res.sendFile("Game/loading_bar.html",{ root : __dirname+"/Public"});
 });
-
+App.get("/Game/highscores_page", function(req,res){
+  var Result = GetHighScore();
+  res.sendFile("Game/highscores_page.html",{ root : __dirname+"/Public"});
+});
+function GetHighScore(){
+  const Database = require("./Server/Database.js");
+  return  Database.GetHighScore("admin", 0);
+}
 // this if for when the signup form is submitted
 App.post('/SignUpSubmit', function (req, res) {
   // this is where the variables get saved so we can use them
@@ -53,7 +60,7 @@ App.post('/SignUpSubmit', function (req, res) {
     var Password = req.body.Password;
     var RePassword = req.body.RePassword;
     // here we save the database file as a variable to make it easier to use
-    const Database = require("./Server/Database.js")
+    const Database = require("./Server/Database.js");
     // here we call the SignUpTo function so it can add the data to the database
     var Result = Database.Check(Username, Password);
     // if no response e.g not true

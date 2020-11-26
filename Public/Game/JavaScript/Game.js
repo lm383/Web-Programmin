@@ -141,6 +141,7 @@ function SetUp(){
       PointScored = GetBlue();
     };
     if(PointScored > 0&&!(Username==="")){
+      console.log("Updateing high score");
       Socket.emit('UpdateHighScore', PointScored, Username);
     };
     // when window is closed disconnect player

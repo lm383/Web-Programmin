@@ -67,25 +67,39 @@ module.exports = {
   },
   //LogInTo: ,
 
-  UpdateHighScore: function GetHighScore(Username, HighScore){
+  GetHighScore: function GetHighScore(Username, HighScore){
     // here at the end of a game / game closes the HighScore is checked and if
-    // it was beaten it will update the HighScore
-    var QuerySearch = `SELECT * FROM Logins WHERE Username= '`
-    +Username+`' AND HighScore < '` + HighScore + `'`;
-    Con.query(QuerySearch, function (err, result) {
-      if (err) throw err;
-      // if successfully found a smaller HighScore
-      if (result.length > 0){
-        // then there was a response so we can update the highscore
-        UpdateHighScore(Username, HighScore, function(){
-          if (!err) {
-             callback(null,rows);
-          }else {
-             callback(true,err);
-          };
-        });
-      };
-    });
+    // it was beaten it will update the HighScore/ when highscore page is opened display
+    // top HIGHSCORES
+    if(Username === "admin"){
+      var QuerySearch = `SELECT * FROM Logins `;
+      Con.query(QuerySearch, function (err, result) {
+        if (err) throw err;
+        // if there are results
+        if (result.length > 0){
+          // then there was a response so we can update the highscore
+          console.log(result);
+          return result;
+        };
+      });
+    }else{
+      var QuerySearch = `SELECT * FROM Logins WHERE Username= '`
+      +Username+`' AND HighScore < '` + HighScore + `'`;
+      Con.query(QuerySearch, function (err, result) {
+        if (err) throw err;
+        // if successfully found a smaller HighScore
+        if (result.length > 0){
+          // then there was a response so we can update the highscore
+          UpdateHighScore(Username, HighScore, function(){
+            if (!err) {
+               callback(null,rows);
+            }else {
+               callback(true,err);
+            };
+          });
+        };
+      });
+    };
   }
 };
 
