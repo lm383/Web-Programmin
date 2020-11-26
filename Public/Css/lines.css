@@ -1,3 +1,4 @@
+/*css code to create a flag out of white lines to complete the logo */
 .line1 {
 	width: 50%;
 	height: 50px;
@@ -17,7 +18,7 @@
   background-color: #e9e9ed;
   padding: 1px;
 }
-
+/* code to rotate the lines to the correct position */
 .left_rotate {
   -ms-transform: rotate(80deg);
   -webkit-transform: rotate(80deg);
