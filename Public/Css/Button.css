@@ -16,7 +16,7 @@ border-radius: 6px;
 display: inline-block;
 transition: all 0.3s ease 0s;
 }
-/* changes the colour and the shape of the border on hover */
+/* changes the colour and the shape of the border on hover  */
 .start_button:hover {
 color: #F8F8FF !important;
 border-radius: 50px;
