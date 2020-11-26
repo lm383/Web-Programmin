@@ -70,7 +70,7 @@ App.post('/SignUpSubmit', function (req, res) {
     }
 
 });
-
+var PlayerName = "";
 // this if for when the login form is submitted
 App.post('/LogInSubmit', function (req, res) {
   // this is where the variables get saved so we can use them
@@ -81,7 +81,7 @@ App.post('/LogInSubmit', function (req, res) {
     // here we call the SignUpTo function so it can add the data to the database
     Database.GetLog(Username, Password, function(err, result){
       if (result){
-
+        PlayerName = Username;
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write("succeffully logged in. Welcome "+ Username);
         res.end('<br><a href="/Game/GamePage.html" rel="nofollow">START</a>');
@@ -98,6 +98,7 @@ App.post('/LogInSubmit', function (req, res) {
 
 // socket.io connection to hopefully allow several people on my Server
 const io = require("socket.io").listen(Server);
+var GameSate;
 //const io = require('socket.io-client');
 // server keeps centralized track of the users Max 6 at a time
 var Users = [null, null, null, null, null, null];
@@ -115,7 +116,10 @@ io.sockets.on("connection", function(Socket) {
     };
   };
   // on conncetion it will tell the client their index and people currently online
-  Socket.emit("connection", PlayerIndex, ConnNum);
+  Socket.emit("connection", PlayerIndex, ConnNum, PlayerName);
+  Socket.broadcast.send("PlayerJoin", PlayerIndex, ConnNum);
+  Playername = "";
+  GameSate = "Setup";
   console.log(`Player ${PlayerIndex} has connected`);
 
   Socket.on("Update", function(data) {
@@ -135,9 +139,35 @@ io.sockets.on("connection", function(Socket) {
     // if no one is connected reset index
     if (ConnNum <= 0){
       PlayerIndex = -1;
+      GameSate = null;
     };
     //Tell everyone what player numbe just disconnected
-    //Socket.broadcast.emit('player-disconnection', PlayerIndex);
+    Socket.broadcast.send("PlayerLeave", {PlayerIndex, ConnNum});
+  });
+
+  // for when a game starts
+  Socket.on("GameStart", ()=>{
+    console.log("PlayerStart");
+    Socket.broadcast.send("GetPlayers", {});
+  });
+  Socket.on("RecivePlayers", function(Index, TopPosition, LeftPosition){
+    console.log("PlayerRecieved" + Index);
+    Socket.broadcast.send("AddPlayers", {Index, TopPosition, LeftPosition});
+  });
+
+  Socket.on('UpdateHighScore', function(Score, Name){
+    const Database = require("./Server/Database.js");
+    Database.GetHighScore(Name, Score, function(err, result){
+      if (result){
+        console.log("Updated");
+      }else{
+        console.log("not Updated");
+      }
+    });
   });
 
 });
+
+setInterval(() => {
+  io.sockets.emit('state', {});
+}, 1000 / 30);
