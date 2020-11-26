@@ -151,22 +151,38 @@ function SetUp(){
 
 // when an other player joins
 function DrawOtherPlayer(OtherNum, TopPos, LeftPos){
-  var OtherPlayer = document.createElement("OtherPlayer");
+  try{
+    var Exists = document.getElementById("OtherPlayer");
+    if ( Exists != null){
+      // already made a OtherPlayer
+      Exists.style.top = TopPos;
+      Exists.style.left = LeftPos;
+      return;
+    }
+  }catch(err){
+    console.log(err);
+  };
+  var OtherPlayer = document.createElement("div");
   // make other player
-  OtherPlayer.style.height = "10vh";
-  OtherPlayer.style.width = "5%";
-  OtherPlayer.style.outline = "1px solid black";
-  OtherPlayer.style.position = "relative";
+  OtherPlayer.className = "OtherPlayer";
+  OtherPlayer.id = "OtherPlayer";
   OtherPlayer.style.top = TopPos+"px";
   OtherPlayer.style.left = LeftPos+"px";
-  if (OtherNum !=0 || OtherNum%2 ==0){
+  if (parseInt(OtherNum) !=0 ||parseInt(OtherNum) %2 ==0){
+    //red team
     OtherPlayer.style.backgroundColor = "#FF0000";
   }else{
+    // blue team
     OtherPlayer.style.backgroundColor = "#0000FF";
   }
   OtherPlayer.style.textAlign = "center";
+  OtherPlayer.innerHTML = OtherNum;
   // adds the player to user screen
   document.body.appendChild(OtherPlayer);
+};
+function ClearOthers(){
+  var OtherPlayer = document.getElementById("OtherPlayer");
+  document.body.removeChild(OtherPlayer);
 
 };
 
