@@ -6,14 +6,14 @@
 /n in command line run 'npm init' , 'npm install express' and 'npm install socket.io'
 4) Use command line to enter the directory the files are saved to
 5) Type node app in command line and hit enter
-6) Open browser of your choice (preferably firefox) and type the url  https://localhost3000
+6) Open browser of your choice (preferably firefox) and type the url  http://localhost:3000/
 7) That's the website enjoy!
 # Instructions to play game
 1) complete Instructions to run
 2) signup and log in (not required but highscore will be saved if you do)
 3) press Start
 4) press Start Game to start the multiplayer
-5) to get another player on open https://localhost3000 in another window and they will join your game
+5) to get another player on open http://localhost:3000/ in another window and they will join your game
 # prerequisites
 - have node js (v12.19.0) installed
 - have npm (6.14.8) installed (with express and socket.io too)
